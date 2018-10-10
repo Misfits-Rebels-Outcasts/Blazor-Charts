@@ -1,7 +1,7 @@
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
-namespace Doughnut_Chart
+namespace DoughnutChartComponent
 {
     public class ExampleJsInterop
     {
