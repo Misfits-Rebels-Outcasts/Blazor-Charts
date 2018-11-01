@@ -1,0 +1,110 @@
+﻿/*
+    This file is to show how CSS and other static resources (such as images) can be
+    used from a library project/package.
+*/
+
+/*
+    This file is to show how CSS and other static resources (such as images) can be
+    used from a library project/package.
+*/
+
+.my-component {
+    border: 2px dashed red;
+    padding: 1em;
+    margin: 1em 0;
+    background-image: url('background.png');
+}
+
+body {
+}
+
+* {
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+    figure {
+        flex-direction: row;
+    }
+}
+
+.piechart-text {
+    fill: #000;
+    transform: translateY(0.25em);
+}
+
+.piechart-number {
+    font-size: 0.5em;
+    line-height: 1;
+    text-anchor: middle;
+    transform: translateY(-0.25em);
+}
+
+.piechart-label {
+    font-size: 0.2em;
+    text-transform: uppercase;
+    text-anchor: middle;
+    transform: translateY(0.3em);
+}
+
+figure {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.piechart-main,
+.piechart-legend {
+    flex: 1;
+    padding-left: 15px;
+    padding-right: 15px;
+    align-self: flex-start;
+}
+
+    .piechart-main svg {
+        height: auto;
+    }
+
+
+.piechart-legend {
+    min-width: calc(8 / 12);
+}
+
+    .piechart-legend [class*="dot-"] {
+        margin-right: 6px;
+    }
+
+.piechart-legend-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+    .piechart-legend-list li {
+        margin: 0 0 8px;
+        padding: 0;
+    }
+
+.dot-red {
+    background-color: #c84b95;
+}
+
+.dot-green {
+    background-color: #27A844;
+}
+
+.dot-blue {
+    background-color: #3779b8;
+}
+
+.round-dot {
+    margin: 5px;
+    display: inline-block;
+    vertical-align: middle;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+}
+
