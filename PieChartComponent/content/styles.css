@@ -17,7 +17,17 @@
 
 body {
 }
+/*
 
+svg {
+    background: yellowgreen;
+    border-radius: 50%;
+}
+
+svg {
+    height: 200px;
+}
+*/
 * {
     box-sizing: border-box;
 }
@@ -27,6 +37,7 @@ body {
         flex-direction: row;
     }
 }
+
 
 .piechart-text {
     fill: #000;
@@ -58,8 +69,8 @@ figure {
 .piechart-main,
 .piechart-legend {
     flex: 1;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
     align-self: flex-start;
 }
 

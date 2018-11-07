@@ -1,18 +1,21 @@
 ﻿<figure>
 
     <div class="piechart-main">
+        <svg width="84%" height="84%" viewBox="-1 -1 2 2" style="transform: rotate(-90deg);margin-left:8px;margin-top:20px">
 
-        <svg width="100%" height="100%" viewBox="0 0 42 42">
-            <rect width="100%" height="100%" fill="white" />
+            <path fill="#ce4b99" d="M 1 0 A 1 1 0 0 1 0.8090169943749475 0.5877852522924731 L 0 0" />
+            <path fill="#27A844" d="M 0.8090169943749475 0.5877852522924731 A 1 1 0 1 1 -1.8369701987210297e-16 -1 L 0 0" />
+            <path fill="#377bbc" d="M -1.8369701987210297e-16 -1 A 1 1 0 0 1 0.9510565162951535 -0.3090169943749476 L 0 0" />
+
         </svg>
-
     </div>
+    <br />
 
     <figcaption class="piechart-key">
 
-        <ul class="doughnut-key-list" aria-hidden="true" style="list-style-type: none;">
+        <ul class="piechart-key-list" aria-hidden="true" style="list-style-type: none;">
             <li>
-                <span class="round-dot dot-red"></span> App Store (40)
+                <span class="round-dot dot-red"></span> App Store1 (40)
             </li>
             <li>
                 <span class="round-dot dot-green"></span> Website (20)
@@ -25,8 +28,25 @@
 
     </figcaption>
 
+
 </figure>
+
 
 @functions{
 
+    public class Slice
+    {
+        public double percent { get; set; }
+        public string color { get; set; }
+    }
+    IList<Slice> Slices = new List<Slice>();
+
+    protected override async Task OnInitAsync()
+    {
+        Slice slice = new Slice();
+        slice.percent = 0.1;
+        slice.color = "Coral";
+
+        Slices.Add(slice);
+    }
 }
