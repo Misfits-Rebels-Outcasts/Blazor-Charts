@@ -10,6 +10,8 @@ namespace DoughnutChartComponent
 {
     public class DoughnutChartMan :BlazorComponent
     {
+        [Parameter]
+        protected string InputData { get; set; }
 
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
@@ -22,14 +24,43 @@ namespace DoughnutChartComponent
             Rectangle rect = new Rectangle() { { "width", "100%" }, { "height", "100%" }, { "fill", "white" } };
             Circle hole = new Circle() { { "cx", "21" }, { "cy", "21" }, { "r", "15.915" }, { "fill", "#fff" } };
             Circle ring = new Circle() { { "cx", "21" }, { "cy", "21" }, { "r", "15.915" }, { "fill", "transparent" }, { "stroke-width", "3" }, { "stroke", "#d2d3d4" }};
-            Circle segment1 = new Circle() { { "cx", "21" }, { "cy", "21" }, { "r", "15.915" }, { "fill", "transparent" }, { "stroke-width", "5" }, { "stroke", "#ce4b99" },{ "stroke-dasharray", "40 60" }, { "stroke-dashoffset", "25" } };
-            Circle segment2 = new Circle() { { "cx", "21" }, { "cy", "21" }, { "r", "15.915" }, { "fill", "transparent" }, { "stroke-width", "5" }, { "stroke", "#377bbc" },{ "stroke-dasharray", "20 80" }, { "stroke-dashoffset", "85" } };
-            Circle segment3 = new Circle() { { "cx", "21" }, { "cy", "21" }, { "r", "15.915" }, { "fill", "transparent" }, { "stroke-width", "5" }, { "stroke", "#27A844" },{ "stroke-dasharray", "40 60" }, { "stroke-dashoffset", "65" } };
+
+            //int[] inputData = { 40, 20, 40 };
+
+            int[] inputData = { 30, 30, 40 };
+            string[] colors = { "#ce4b99", "#27A844", "#377bbc" };
+            string[] labels = { "App Store", "Website", "Partners" };
+            
+            int counterClockwiseDefaultOffset = 25;
+            int preceedingTotalPercent = 0;
+            int offset = counterClockwiseDefaultOffset;
+            List<Circle> segments = new List<Circle>();
+            int colorCounter = 0;
+            string[] inputDataArr = InputData.Split(',');
+            foreach (string dataStr in inputDataArr)
+            {
+                int data = int.Parse(dataStr);
+                int percent = data;
+                int reversePercent = 100 - percent;
+                offset = 100 - preceedingTotalPercent + counterClockwiseDefaultOffset;
+                preceedingTotalPercent = preceedingTotalPercent + percent;
+                Circle segment = new Circle() { { "cx", "21" }, { "cy", "21" }, { "r", "15.915" }, { "fill", "transparent" }, { "stroke-width", "5" }, { "stroke", colors[colorCounter++] }, { "stroke-dasharray", percent + " " + reversePercent }, { "stroke-dashoffset", offset.ToString() } };
+                segments.Add(segment);
+            }
+
+            //Circle segment1 = new Circle() { { "cx", "21" }, { "cy", "21" }, { "r", "15.915" }, { "fill", "transparent" }, { "stroke-width", "5" }, { "stroke", "#ce4b99" }, { "stroke-dasharray", percent+" "+reversePercent }, { "stroke-dashoffset", offset.ToString() } };
+            //Circle segment2 = new Circle() { { "cx", "21" }, { "cy", "21" }, { "r", "15.915" }, { "fill", "transparent" }, { "stroke-width", "5" }, { "stroke", "#27A844" }, { "stroke-dasharray", percent + " " + reversePercent }, { "stroke-dashoffset", offset.ToString() } };
+            //Circle segment3 = new Circle() { { "cx", "21" }, { "cy", "21" }, { "r", "15.915" }, { "fill", "transparent" }, { "stroke-width", "5" }, { "stroke", "#377bbc" }, { "stroke-dasharray", percent + " " + reversePercent }, { "stroke-dashoffset", offset.ToString() } };
+
             Text numberText = new Text() { { "x", "50%" }, { "y", "50%" }, { "class", "doughnut-number" }, { "content", "100" } };
             Text labelText = new Text() { { "x", "50%" }, { "y", "50%" }, { "class", "doughnut-label" }, { "content", "Sales" } };
             Group grp = new Group() { { "class", "doughnut-text" } };
             grp.AddItems(numberText,labelText);
-            svg.AddItems(rect, hole, ring, segment1, segment2, segment3, grp);
+            //svg.AddItems(rect, hole, ring, segment1, segment2, segment3, grp);
+            svg.AddItems(rect, hole, ring);
+            foreach (Circle segment in segments)
+                svg.AddItems(segment);
+            svg.AddItems(grp);
 
             BlazorRenderer blazorRenderer = new BlazorRenderer();
             blazorRenderer.Draw(seq, builder, svg);
@@ -41,27 +72,48 @@ namespace DoughnutChartComponent
             builder.AddAttribute(++seq, "aria-hidden", "true");
             builder.AddAttribute(++seq, "style", "list-style-type: none;");
 
+            int counter = 0;
+            foreach (string dataStr in inputDataArr)
+            {
+                int data = int.Parse(dataStr);
+                builder.OpenElement(++seq, "li");
+                builder.OpenElement(++seq, "span");
+                builder.AddAttribute(++seq, "class", "round-dot");
+                builder.AddAttribute(++seq, "style", "background-color:" + colors[counter]);
+
+                builder.CloseElement();
+                builder.AddContent(++seq, labels[counter++]+" "+"("+data.ToString()+")");
+                builder.CloseElement();
+            }
+            /*
             builder.OpenElement(++seq, "li");
             builder.OpenElement(++seq, "span");
-            builder.AddAttribute(++seq, "class", "round-dot dot-red");
+            //builder.AddAttribute(++seq, "class", "round-dot dot-red");
+            builder.AddAttribute(++seq, "class", "round-dot");
+            builder.AddAttribute(++seq, "style", "background-color:"+colors[0]);
+
             builder.CloseElement();
             builder.AddContent(++seq, "App Store (40)");
             builder.CloseElement();
 
             builder.OpenElement(++seq, "li");
             builder.OpenElement(++seq, "span");
-            builder.AddAttribute(++seq, "class", "round-dot dot-green");
+            //builder.AddAttribute(++seq, "class", "round-dot dot-green");
+            builder.AddAttribute(++seq, "class", "round-dot");
+            builder.AddAttribute(++seq, "style", "background-color:" + colors[1]);
             builder.CloseElement();
             builder.AddContent(++seq, "Website (20)");
             builder.CloseElement();
 
             builder.OpenElement(++seq, "li");
             builder.OpenElement(++seq, "span");
-            builder.AddAttribute(++seq, "class", "round-dot dot-blue");
+            //builder.AddAttribute(++seq, "class", "round-dot dot-blue");
+            builder.AddAttribute(++seq, "class", "round-dot");
+            builder.AddAttribute(++seq, "style", "background-color:" + colors[2]);
             builder.CloseElement();
             builder.AddContent(++seq, "Partners (40)");
             builder.CloseElement();
-
+            */
             builder.CloseElement();
             builder.CloseElement();
 
