@@ -17,7 +17,7 @@ namespace com.man.svg
             return internalList;
         }
 
-        public void Add(string name, string value) => internalList.Add($@"{name}:{value}");
+        public void Add(string name, string value) => internalList.Add($@"{name}={value}");
 
         private List<SVG> m_innerCollection = new List<SVG>();
         public List<SVG> GetChildren()

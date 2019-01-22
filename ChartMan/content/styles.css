@@ -103,3 +103,14 @@ figure {
     border-radius: 50%;
 }
 
+.piechart-main,
+.pirchart-legend {
+    flex: 1;
+    padding-left: 15px;
+    padding-right: 15px;
+    align-self: flex-start;
+}
+
+    .piechart-main svg {
+        height: auto;
+    }

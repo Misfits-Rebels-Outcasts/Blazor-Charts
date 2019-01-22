@@ -18,7 +18,7 @@ namespace com.man.svg
             
             foreach (string attribute in svg.GetAttributes())
             {
-                string[] splitContent = attribute.Split(':');
+                string[] splitContent = attribute.Split('=');
                 builder.AddAttribute(++k, splitContent[0], splitContent[1]);
             }
             
@@ -31,7 +31,7 @@ namespace com.man.svg
                     builder.OpenElement(++k, child.type);
                     foreach (string attribute in child.GetAttributes())
                     {
-                        string[] splitContent = attribute.Split(':');
+                        string[] splitContent = attribute.Split('=');
                         if (splitContent[0] == "content")
                         {
                             content = splitContent[1];

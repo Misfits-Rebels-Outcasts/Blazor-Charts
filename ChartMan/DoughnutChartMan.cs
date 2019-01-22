@@ -64,7 +64,7 @@ namespace DoughnutChartComponent
 
             BlazorRenderer blazorRenderer = new BlazorRenderer();
             blazorRenderer.Draw(seq, builder, svg);
-
+            
             builder.OpenElement(++seq, "figcaption");
             builder.AddAttribute(++seq, "class", "doughnut-key");
             builder.OpenElement(++seq, "ul");
@@ -85,37 +85,9 @@ namespace DoughnutChartComponent
                 builder.AddContent(++seq, labels[counter++]+" "+"("+data.ToString()+")");
                 builder.CloseElement();
             }
-            /*
-            builder.OpenElement(++seq, "li");
-            builder.OpenElement(++seq, "span");
-            //builder.AddAttribute(++seq, "class", "round-dot dot-red");
-            builder.AddAttribute(++seq, "class", "round-dot");
-            builder.AddAttribute(++seq, "style", "background-color:"+colors[0]);
-
-            builder.CloseElement();
-            builder.AddContent(++seq, "App Store (40)");
-            builder.CloseElement();
-
-            builder.OpenElement(++seq, "li");
-            builder.OpenElement(++seq, "span");
-            //builder.AddAttribute(++seq, "class", "round-dot dot-green");
-            builder.AddAttribute(++seq, "class", "round-dot");
-            builder.AddAttribute(++seq, "style", "background-color:" + colors[1]);
-            builder.CloseElement();
-            builder.AddContent(++seq, "Website (20)");
-            builder.CloseElement();
-
-            builder.OpenElement(++seq, "li");
-            builder.OpenElement(++seq, "span");
-            //builder.AddAttribute(++seq, "class", "round-dot dot-blue");
-            builder.AddAttribute(++seq, "class", "round-dot");
-            builder.AddAttribute(++seq, "style", "background-color:" + colors[2]);
-            builder.CloseElement();
-            builder.AddContent(++seq, "Partners (40)");
-            builder.CloseElement();
-            */
             builder.CloseElement();
             builder.CloseElement();
+            
 
             builder.CloseElement();
             builder.CloseElement();
