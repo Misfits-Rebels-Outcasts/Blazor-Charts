@@ -3,6 +3,9 @@ SVG Charts for Blazor
 
 v0.0.1
 
+[![MIT Licence](https://www.webassemblyman.com/images/mitlicense.png)](https://www.webassemblyman.com/MITLicense.txt)
+
+
 Doughnut Chart, Pie Chart, Line Chart, Horizontal Bar Chart and Vertical Bar Chart
 
 ![Blazor Charts](https://barcoderesource.com/blazor/blazorcharts.png)
