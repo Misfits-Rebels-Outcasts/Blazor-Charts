@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Blazor.Components;
-using Microsoft.AspNetCore.Blazor.RenderTree;
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.RenderTree;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using com.man.svg;
 
 namespace PieChartComponent
 {
-    public class PieChartMan :BlazorComponent
+    public class PieChartMan : ComponentBase
     {
         [Parameter]
         protected string InputData { get; set; }
@@ -51,6 +51,8 @@ namespace PieChartComponent
 
 
             SVG svg = new SVG() { { "width", "100%" }, { "height", "100%" }, { "viewBox", "-1 -1 2 2" },{"style","transform: rotate(-90deg)" } };
+            //Rectangle rect = new Rectangle() { { "width", "100%" }, { "height", "100%" }, { "fill", "cyan" } };
+            //svg.AddItems(rect);
 
             double x, y;
             double px=0, py=0;

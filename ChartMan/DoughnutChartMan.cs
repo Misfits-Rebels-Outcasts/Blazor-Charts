@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Blazor.Components;
-using Microsoft.AspNetCore.Blazor.RenderTree;
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.RenderTree;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,20 +8,30 @@ using com.man.svg;
 
 namespace DoughnutChartComponent
 {
-    public class DoughnutChartMan :BlazorComponent
+    public class DoughnutChartMan : ComponentBase
     {
         [Parameter]
         protected string InputData { get; set; }
 
+        bool firstTime = true;
+        protected async override Task OnAfterRenderAsync()
+        {
+            //System.Diagnostics.Debug.WriteLine("OnAfterRenderAsync");
+            //string hello = await ChartMan.ExampleJsInterop.Display("hello");
+            //System.Diagnostics.Debug.WriteLine("::" + hello);
+ 
+        }
+
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
+
             var seq = 0;
             builder.OpenElement(seq, "figure");
             builder.OpenElement(++seq, "div");
             builder.AddAttribute(++seq, "class", "doughnut-main");
 
             SVG svg = new SVG() { { "width", "100%" }, { "height", "100%" }, { "viewBox", "0 0 42 42" } };
-            Rectangle rect = new Rectangle() { { "width", "100%" }, { "height", "100%" }, { "fill", "white" } };
+            Rectangle rect = new Rectangle() { { "width", "100%" }, { "height", "100%" }, { "fill", "gray" } };
             Circle hole = new Circle() { { "cx", "21" }, { "cy", "21" }, { "r", "15.915" }, { "fill", "#fff" } };
             Circle ring = new Circle() { { "cx", "21" }, { "cy", "21" }, { "r", "15.915" }, { "fill", "transparent" }, { "stroke-width", "3" }, { "stroke", "#d2d3d4" }};
 
@@ -53,7 +63,7 @@ namespace DoughnutChartComponent
             //Circle segment3 = new Circle() { { "cx", "21" }, { "cy", "21" }, { "r", "15.915" }, { "fill", "transparent" }, { "stroke-width", "5" }, { "stroke", "#377bbc" }, { "stroke-dasharray", percent + " " + reversePercent }, { "stroke-dashoffset", offset.ToString() } };
 
             Text numberText = new Text() { { "x", "50%" }, { "y", "50%" }, { "class", "doughnut-number" }, { "content", "100" } };
-            Text labelText = new Text() { { "x", "50%" }, { "y", "50%" }, { "class", "doughnut-label" }, { "content", "Sales" } };
+            Text labelText = new Text() { { "x", "50%" }, { "y", "50%" }, { "id", "dcolor" }, { "class", "doughnut-label" }, { "content", "Sales" } };
             Group grp = new Group() { { "class", "doughnut-text" } };
             grp.AddItems(numberText,labelText);
             //svg.AddItems(rect, hole, ring, segment1, segment2, segment3, grp);
@@ -92,7 +102,7 @@ namespace DoughnutChartComponent
             builder.CloseElement();
             builder.CloseElement();
 
- 
+   
             /*
             builder.OpenElement(seq, "figure");
             builder.OpenElement(++seq, "div");

@@ -4,5 +4,15 @@
 window.exampleJsFunctions = {
   showPrompt: function (message) {
     return prompt(message, 'Type anything here');
-  }
+    }
+};
+
+window.JsFunctions = {
+
+    printWorld: function (message) {
+
+        var dcolor = document.getElementById("dcolor");
+        var bbox = dcolor.getBoundingClientRect();
+        return bbox.width;
+    }
 };

@@ -1,10 +1,11 @@
 ﻿<figure>
 
     <div class="linechart-main">
+        <!--
 
-        <svg width="90%" height="90%" viewBox="0 0 450 420">
-            <rect width="100%" height="100%" fill="white" />
-
+    -->
+        <svg width="100%" height="100%" viewBox="0 0 450 420">
+            <rect width="100%" height="100%" fill="white" stroke="gray" />
 
             <style>
                 .small {
@@ -19,10 +20,12 @@
 
             <title>LineChart</title>
             <desc>LineChart</desc>
+            <!--Axis-->
             <path d="M 0 350 L 450 350
-M 25 350 L 25 0"
+    M 25 350 L 25 0"
                   fill="red" stroke="gray" stroke-width="0.3" />
 
+            <!--Horizontal Lines-->
             <path d="M 25 300 L 450 300"
                   fill="none" stroke="gray" stroke-width="0.3" />
 
@@ -41,6 +44,7 @@ M 25 350 L 25 0"
             <path d="M 25 50 L 450 50"
                   fill="none" stroke="gray" stroke-width="0.3" />
 
+            <!--Line Chart-->
 
             <path d="M 30 250 L 130 120
 L 230 150 L 330 80 L 430 200"
@@ -50,16 +54,17 @@ L 230 150 L 330 80 L 430 200"
 L 230 120 L 330 100 L 430 130"
                   fill="none" stroke="#ce4b99" stroke-width="2.5" />
 
+            <!--Legend-->
 
-            <text class="normal" x="330" y="295" fill="Bluwk">Male</text>
+            <text id="dcolor" class="normal" x="330" y="295" fill="Bluwk">Male</text>
             <text class="normal" x="330" y="275" fill="Bluw">Female</text>
             <!--
-            <path d="M 375 260 L 395 260" fill="none" stroke="#ce4b99" stroke-width="2.5" />
-            -->
+    <path d="M 375 260 L 395 260" fill="none" stroke="#ce4b99" stroke-width="2.5" />
+    -->
             <path d="M 375 290 L 395 290" fill="none" stroke="#27A844" stroke-width="2.5" />
             <path d="M 395 270 L 415 270" fill="none" stroke="#ce4b99" stroke-width="2.5" />
 
-
+            <!--Labels-->
 
             <text class="small" x="30" y="375" fill="Black">Jan</text>
             <text class="small" x="130" y="375" fill="Black">Feb</text>
@@ -84,4 +89,41 @@ L 230 120 L 330 100 L 430 130"
 </figure>
 
 @functions{
+    private string dynamicContent = "Dec";
+
+
+    void GetBB()
+    {
+        System.Diagnostics.Debug.WriteLine("here");
+        //string hello = await ChartMan.ExampleJsInterop.Display("hello");
+        //System.Diagnostics.Debug.WriteLine("::" + hello);
+    }
+
+    protected override void OnInit()
+    {
+        /*
+        DynamicFragment = builder =>
+        {
+
+            builder.OpenElement(1, "text");
+            builder.AddAttribute(2, "id","dcolorx");
+            builder.AddAttribute(3, "class","small");
+            builder.AddContent(4, dynamicContent);
+            builder.CloseElement();
+
+        };
+        */
+
+    }
+
+    RenderFragment CreateDynamicComponent() => builder =>
+    {
+        builder.OpenElement(1, "text");
+        builder.AddAttribute(2, "id","dcolorx");
+        builder.AddAttribute(3, "class","small");
+        builder.AddContent(4, dynamicContent);
+        builder.CloseElement();
+    };
+
+    private Microsoft.AspNetCore.Components.RenderFragment DynamicFragment;
 }

@@ -104,7 +104,7 @@ figure {
 }
 
 .piechart-main,
-.pirchart-legend {
+.piechart-legend {
     flex: 1;
     padding-left: 15px;
     padding-right: 15px;
@@ -112,5 +112,17 @@ figure {
 }
 
     .piechart-main svg {
+        height: auto;
+    }
+
+.linechart-main,
+.linechart-legend {
+    flex: 1;
+    padding-left: 15px;
+    padding-right: 15px;
+    align-self: flex-start;
+}
+
+    .linechart-main svg {
         height: auto;
     }

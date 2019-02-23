@@ -11,6 +11,15 @@ namespace ChartMan
             return JSRuntime.Current.InvokeAsync<string>(
                 "exampleJsFunctions.showPrompt",
                 message);
+
         }
+        public static Task<string> Display(string message)
+        {
+            return JSRuntime.Current.InvokeAsync<string>(
+                "JsFunctions.printWorld",
+                message);
+
+        }
+   
     }
 }
