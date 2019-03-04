@@ -1,7 +1,7 @@
 # Blazor-Charts
-SVG Charts for Blazor
+This is an Open Source SVG Charts for Blazor and WebAssembly with minimal Javascript dependencies. 
 
-v0.0.1
+v0.0.2
 
 [![MIT Licence](https://www.webassemblyman.com/images/mitlicense.png)](https://www.webassemblyman.com/MITLicense.txt)
 
