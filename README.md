@@ -1,5 +1,5 @@
 # Blazor-Charts
-This is an Open Source SVG Charts for Blazor and WebAssembly with minimal Javascript dependencies. 
+This is an Open Source SVG (Scalable Vector Graphics) Charts for Blazor and WebAssembly. It uses C#, HTML and CSS with minimal Javascript dependencies.  
 
 v0.0.2
 
