@@ -82,6 +82,26 @@ figure {
         padding: 0;
     }
 
+.doughnut-key {
+    min-width: calc(8 / 12);
+}
+
+
+    .doughnut-key [class*="shape-"] {
+        margin-right: 6px;
+    }
+
+.doughnut-key-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+    .doughnut-key-list li {
+        margin: 0 0 8px;
+        padding: 0;
+    }
+
 .dot-red {
     background-color: #c84b95;
 }
@@ -115,6 +135,26 @@ figure {
         height: auto;
     }
 
+.piechart-key {
+    min-width: calc(8 / 12);
+}
+
+
+    .piechart-key [class*="shape-"] {
+        margin-right: 6px;
+    }
+
+.piechart-key-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+    .piechart-key-list li {
+        margin: 0 0 8px;
+        padding: 0;
+    }
+
 .linechart-main,
 .linechart-legend {
     flex: 1;
@@ -125,4 +165,25 @@ figure {
 
     .linechart-main svg {
         height: auto;
+    }
+
+
+.linechart-key {
+    min-width: calc(8 / 12);
+}
+
+
+.linechart-key [class*="shape-"] {
+    margin-right: 6px;
+}
+
+.linechart-key-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+    .linechart-key-list li {
+        margin: 0 0 8px;
+        padding: 0;
     }

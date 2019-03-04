@@ -31,16 +31,19 @@ namespace DoughnutChartComponent
             builder.AddAttribute(++seq, "class", "doughnut-main");
 
             SVG svg = new SVG() { { "width", "100%" }, { "height", "100%" }, { "viewBox", "0 0 42 42" } };
-            Rectangle rect = new Rectangle() { { "width", "100%" }, { "height", "100%" }, { "fill", "gray" } };
+            Rectangle rect = new Rectangle() { { "width", "100%" }, { "height", "100%" }, { "fill", "white" } };
             Circle hole = new Circle() { { "cx", "21" }, { "cy", "21" }, { "r", "15.915" }, { "fill", "#fff" } };
             Circle ring = new Circle() { { "cx", "21" }, { "cy", "21" }, { "r", "15.915" }, { "fill", "transparent" }, { "stroke-width", "3" }, { "stroke", "#d2d3d4" }};
 
             //int[] inputData = { 40, 20, 40 };
 
             int[] inputData = { 30, 30, 40 };
-            string[] colors = { "#ce4b99", "#27A844", "#377bbc" };
-            string[] labels = { "App Store", "Website", "Partners" };
-            
+            //string[] colors = { "#ce4b99", "#27A844", "#377bbc" };
+            //string[] colors = { "#ff0000", "#ffff00", "#0000ff", "#fccc1a", "#fefe33", "#b2d732", "#66b032", "#347c98", "#0247fe", "#4424d6","#8601af","#c21460" };
+            string[] colors = { "#fe2712", "#fc600a", "#fb9902","#fccc1a", "#fefe33", "#b2d732", "#66b032", "#347c98", "#0247fe", "#4424d6","#8601af","#c21460" };
+            //string[] colors = {"#fe2712", "#fefe33","#0247fe","#fc600a","#b2d732","#4424d6","#fb9902","#66b032","#8601af","#fccc1a","#347c98","#c21460"};
+            string[] labels = { "App Store", "Website", "Partners", "App Store", "Website", "Partners", "App Store", "Website", "Partners", "App Store", "Website", "Partners" };
+            /*
             int counterClockwiseDefaultOffset = 25;
             int preceedingTotalPercent = 0;
             int offset = counterClockwiseDefaultOffset;
@@ -52,6 +55,24 @@ namespace DoughnutChartComponent
                 int data = int.Parse(dataStr);
                 int percent = data;
                 int reversePercent = 100 - percent;
+                offset = 100 - preceedingTotalPercent + counterClockwiseDefaultOffset;
+                preceedingTotalPercent = preceedingTotalPercent + percent;
+                Circle segment = new Circle() { { "cx", "21" }, { "cy", "21" }, { "r", "15.915" }, { "fill", "transparent" }, { "stroke-width", "5" }, { "stroke", colors[colorCounter++] }, { "stroke-dasharray", percent + " " + reversePercent }, { "stroke-dashoffset", offset.ToString() } };
+                segments.Add(segment);
+            }
+            */
+
+            double counterClockwiseDefaultOffset = 25;
+            double preceedingTotalPercent = 0;
+            double offset = counterClockwiseDefaultOffset;
+            List<Circle> segments = new List<Circle>();
+            int colorCounter = 0;
+            string[] inputDataArr = InputData.Split(',');
+            foreach (string dataStr in inputDataArr)
+            {
+                double data = double.Parse(dataStr);
+                double percent = data;
+                double reversePercent = 100 - percent;
                 offset = 100 - preceedingTotalPercent + counterClockwiseDefaultOffset;
                 preceedingTotalPercent = preceedingTotalPercent + percent;
                 Circle segment = new Circle() { { "cx", "21" }, { "cy", "21" }, { "r", "15.915" }, { "fill", "transparent" }, { "stroke-width", "5" }, { "stroke", colors[colorCounter++] }, { "stroke-dasharray", percent + " " + reversePercent }, { "stroke-dashoffset", offset.ToString() } };
@@ -85,7 +106,7 @@ namespace DoughnutChartComponent
             int counter = 0;
             foreach (string dataStr in inputDataArr)
             {
-                int data = int.Parse(dataStr);
+                double data = double.Parse(dataStr);
                 builder.OpenElement(++seq, "li");
                 builder.OpenElement(++seq, "span");
                 builder.AddAttribute(++seq, "class", "round-dot");
