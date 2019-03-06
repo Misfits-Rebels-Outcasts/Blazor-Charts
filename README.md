@@ -19,7 +19,7 @@ To use the Line Chart
 
 To use the Horizontal Bar Chart (to be updated)
 
-&lt;HorizontalBarChart&gt;&lt;/HorizontalBarChart&gt;
+&lt;HorizontalBarChartMan InputData="30,70,42,50,3,55,35,22"&gt;&lt;/HorizontalBarChartMan&gt;
 
 To use the Vertical Bar Chart (to be updated)
 
