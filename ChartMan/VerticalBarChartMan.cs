@@ -6,9 +6,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using com.man.svg;
 
-namespace HorizontalBarChartComponent
+namespace VerticalBarChartComponent
 {
-    public class HorizontalBarChartMan : ComponentBase
+    public class VerticalBarChartMan : ComponentBase
     {
         [Parameter]
         protected string InputData { get; set; }
@@ -108,6 +108,22 @@ namespace HorizontalBarChartComponent
             //Horizontal Lines
             double y = verticalStartSpace;
             double startGridY = 0;
+            for (int counter = 0; counter < numHorizontalLines; counter++)
+            {
+                if (counter == numHorizontalLines - 1 && skipLastHorizontalLine)
+                    continue;
+
+                Path path = new Path() { { "fill", "none" }, { "stroke", "gray" }, { "stroke-width", "0.2" }, { "d", "M " + horizontalStartSpace.ToString() + " " + (boundHeight - y).ToString() + " L " + (boundWidth - horizontalEndSpace).ToString() + " " + (boundHeight - y).ToString() } };
+                Text label = new Text() { { "x", (horizontalStartSpace - 2).ToString() }, { "y", (boundHeight - y).ToString() }, { "font-size", "4px" }, { "text-anchor", "end" }, { "content", (startGridY).ToString() } };
+                svg.AddItems(path, label);
+                System.Diagnostics.Debug.WriteLine("Y:" + y);
+
+                y = y + verticalSpace;
+                startGridY = startGridY + gridYUnits;
+            }
+            /*
+            double y = verticalStartSpace;
+            double startGridY = 0;
             i = 0;
             for (int counter=0;counter< numHorizontalLines; counter++)
             {
@@ -129,7 +145,7 @@ namespace HorizontalBarChartComponent
                     {
                         System.Diagnostics.Debug.WriteLine("i:" + i + ":" + dAry[i].ToString() + "px");
                         System.Diagnostics.Debug.WriteLine("labelrect");
-                        Rectangle rectangle = new Rectangle() { { "fill", "#ce4b99" }, { "x", (horizontalStartSpace).ToString() }, { "y", (boundHeight - y - 5).ToString() }, { "width", dAry[i].ToString() + "px" }, { "height", "5px" } };
+                        Rectangle rectangle = new Rectangle() { { "fill", "blue" }, { "x", (horizontalStartSpace).ToString() }, { "y", (boundHeight - y - 5).ToString() }, { "width", dAry[i].ToString() + "px" }, { "height", "5px" } };
                         svg.AddItems(label, rectangle);
                         i++;
                     }
@@ -145,6 +161,7 @@ namespace HorizontalBarChartComponent
                 y = y + verticalSpace;
                 startGridY = startGridY + gridYUnits;
             }
+            */
 
             /*
             //Chart Line
@@ -197,6 +214,7 @@ namespace HorizontalBarChartComponent
             //Vertical Lines            
             double x = horizontalStartSpace;
             double startGridX = 0;
+            i = 0;
             for (int counter = 0; counter < numVerticalLines; counter++)
             {
                 if (counter == numVerticalLines - 1 && skipLastVerticalLine)
@@ -205,8 +223,26 @@ namespace HorizontalBarChartComponent
                 Path path = new Path() { { "fill", "none" }, { "stroke", "gray" }, { "stroke-width", "0.2" }, { "d", "M " + x.ToString() +" "+ (boundHeight-verticalStartSpace).ToString() + " L "+ x.ToString() + " " +(verticalEndSpace).ToString() } };
                 Text label = new Text() { {"x",x.ToString() }, { "y", (boundHeight - verticalStartSpace + 5).ToString() },{ "font-size", "4px" }, { "text-anchor", "middle" }, { "content", (startGridX).ToString() } };
                 startGridX = startGridX + gridXUnits;
+                if (counter==0)
+                    svg.AddItems(path,label);
+                else
+                {
 
-                svg.AddItems(path,label);
+                    if (i < (inputDataArr.Length))
+                    {
+                        System.Diagnostics.Debug.WriteLine("i:" + i + ":" + dAry[i].ToString() + "px");
+                        System.Diagnostics.Debug.WriteLine("labelrect");
+                        Rectangle rectangle = new Rectangle() { { "fill", "#27A844" }, { "x", (x-3).ToString() }, { "y", (boundHeight-verticalStartSpace- dAry[i]).ToString() }, { "width", "5px" }, { "height", dAry[i].ToString() + "px" } };
+                        svg.AddItems(label, rectangle,path);
+                        i++;
+                    }
+                    else
+                    {
+                        System.Diagnostics.Debug.WriteLine("label");
+                        svg.AddItems(label,path);
+                    }
+                }
+
                 x = x + horizontalSpace;
             }
             
