@@ -23,7 +23,7 @@ To use the Horizontal Bar Chart (to be updated)
 
 To use the Vertical Bar Chart (to be updated)
 
-&lt;VerticalBarChart&gt;&lt;/VerticalBarChart&gt;
+&lt;VerticalBarChartMan InputData="30,70,42,50,3,55,35,22"&gt;&lt;/VerticalBarChartMan&gt;
 
 
 ![Blazor Charts](https://barcoderesource.com/blazor/blazorcharts.png)
