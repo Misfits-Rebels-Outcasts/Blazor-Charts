@@ -1,0 +1,86 @@
+﻿/*
+    This file is to show how CSS and other static resources (such as images) can be
+    used from a library project/package.
+*/
+
+.my-component {
+    border: 2px dashed red;
+    padding: 1em;
+    margin: 1em 0;
+    background-image: url('background.png');
+}
+
+body {
+}
+
+* {
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+    figure {
+        flex-direction: row;
+    }
+}
+
+figure {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.dot-red {
+    background-color: #c84b95;
+}
+
+.dot-green {
+    background-color: #27A844;
+}
+
+.dot-blue {
+    background-color: #3779b8;
+}
+
+.round-dot {
+    margin: 5px;
+    display: inline-block;
+    vertical-align: middle;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+}
+
+.piechart-main,
+.piechart-legend {
+    flex: 1;
+    padding-left: 15px;
+    padding-right: 15px;
+    align-self: flex-start;
+}
+
+.piechart-main svg {
+    height: auto;
+}
+
+.piechart-key {
+    min-width: calc(8 / 12);
+}
+
+
+.piechart-key [class*="shape-"] {
+    margin-right: 6px;
+}
+
+.piechart-key-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.piechart-key-list li {
+    margin: 0 0 8px;
+    padding: 0;
+}
+
