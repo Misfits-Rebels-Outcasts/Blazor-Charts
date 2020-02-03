@@ -11,11 +11,13 @@ To use the Doughnut Chart
 
 https://www.webassemblyman.com/blazor/blazordonutchart.html
 
---Update for the rest of the charts coming soon...
-
 To use the Pie Chart
 
-&lt;PieChartMan InputData="34,33,33"&gt;&lt;/PieChartMan&gt;
+&lt;PieChart InputData="34,33,33"&gt;&lt;/PieChart&gt;
+
+https://www.webassemblyman.com/blazor/blazorpiechart.html
+
+--Update for the rest of the charts coming soon...
 
 To use the Line Chart
 
