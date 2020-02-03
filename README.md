@@ -1,7 +1,7 @@
 # Blazor-Charts
 This is an Open Source SVG (Scalable Vector Graphics) Charts for Blazor and WebAssembly. It uses C#, HTML and CSS with minimal Javascript dependencies.  
 
-v0.0.3
+v0.0.4
 
 [![MIT Licence](https://www.webassemblyman.com/images/mitlicense.png)](https://www.webassemblyman.com/MITLicense.txt)
 
@@ -17,23 +17,21 @@ To use the Pie Chart
 
 https://www.webassemblyman.com/blazor/blazorpiechart.html
 
---Update for the rest of the charts coming soon...
-
 To use the Line Chart
 
-&lt;LineChartMan InputData="[30,70,42,50,3,55,35,22 ],[40,50,32,70,55,15,15,12],[0,10,10,10,10,20,70,70]"&gt;&lt;/LineChartMan&gt;
+&lt;LineChart InputData="[30,70,42,50,3,55,35,22 ],[40,50,32,70,55,15,15,12],[0,10,10,10,10,20,70,70]"&gt;&lt;/LineChart&gt;
 
 To use the Horizontal Bar Chart (to be updated)
 
-&lt;HorizontalBarChartMan InputData="30,70,42,50,3,55,35,22"&gt;&lt;/HorizontalBarChartMan&gt;
+&lt;HorizontalBarChart InputData="30,70,42,50,3,55,35,22"&gt;&lt;/HorizontalBarChart&gt;
 
 To use the Vertical Bar Chart (to be updated)
 
-&lt;VerticalBarChartMan InputData="30,70,42,50,3,55,35,22"&gt;&lt;/VerticalBarChartMan&gt;
+&lt;VerticalBarChart InputData="30,70,42,50,3,55,35,22"&gt;&lt;/VerticalBarChart&gt;
 
 
 ![Blazor Charts](https://barcoderesource.com/blazor/blazorcharts.png)
 
 ![Blazor Charts](https://barcoderesource.com/blazor/blazorbarcharts.png)
 
-Please see [Misfits-Rebels-Outcasts/Blazor-Dashboard](https://github.com/Misfits-Rebels-Outcasts/Blazor-Dashboard) for building and viewing the Blazor Charts hosted here.
+Please also check out our Elegantly Simple [Misfits-Rebels-Outcasts/Blazor-Dashboard](https://github.com/Misfits-Rebels-Outcasts/Blazor-Dashboard) that goes hand-in-hand with our Blazor Charts.
