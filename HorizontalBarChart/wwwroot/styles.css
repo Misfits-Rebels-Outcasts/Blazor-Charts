@@ -10,9 +10,6 @@
     background-image: url('background.png');
 }
 
-body {
-}
-
 * {
     box-sizing: border-box;
 }
@@ -32,7 +29,7 @@ figure {
 }
 
 .linechart-main,
-.linechart-legend {
+.linechart-key {
     flex: 1;
     padding-left: 15px;
     padding-right: 15px;
@@ -49,7 +46,7 @@ figure {
 }
 
 
-.linechart-key [class*="shape-"] {
+.linechart-key [class*="round-"] {
     margin-right: 6px;
 }
 
