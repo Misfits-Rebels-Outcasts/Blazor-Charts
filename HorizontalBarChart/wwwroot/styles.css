@@ -28,45 +28,15 @@ figure {
     margin-right: -15px;
 }
 
-.linechart-main,
-.linechart-key {
+.horizontalbarchart-main{
     flex: 1;
     padding-left: 15px;
     padding-right: 15px;
     align-self: flex-start;
 }
 
-    .linechart-main svg {
+    .horizontalbarchart-main svg {
         height: auto;
     }
 
-
-.linechart-key {
-    min-width: calc(8 / 12);
-}
-
-
-.linechart-key [class*="round-"] {
-    margin-right: 6px;
-}
-
-.linechart-key-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.linechart-key-list li {
-    margin: 0 0 8px;
-    padding: 0;
-}
-
-.round-dot {
-    margin: 5px;
-    display: inline-block;
-    vertical-align: middle;
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-}
 

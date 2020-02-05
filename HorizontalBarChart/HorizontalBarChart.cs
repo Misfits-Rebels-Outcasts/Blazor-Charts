@@ -31,7 +31,7 @@ namespace WebAssemblyMan
             var seq = 0;
             builder.OpenElement(seq, "figure");
             builder.OpenElement(++seq, "div");
-            builder.AddAttribute(++seq, "class", "linechart-main");
+            builder.AddAttribute(++seq, "class", "horizontalbarchart-main");
 
             System.Diagnostics.Debug.WriteLine("ID"+InputData);
 
