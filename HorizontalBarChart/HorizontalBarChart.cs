@@ -45,30 +45,30 @@ namespace WebAssemblyMan
 
             string[] colors = { "#fe2712", "#fc600a", "#fb9902", "#fccc1a", "#fefe33", "#b2d732", "#66b032", "#347c98", "#0247fe", "#4424d6", "#8601af", "#c21460" };
 
-            string[] labels = { "App Store", "Website", "Partners", "App Store", "Website", "Partners", "App Store", "Website", "Partners", "App Store", "Website", "Partners" };
+            string[] labels = { "App Store", "Website", "Partners", "Direct", "Channels", "Retail", "Distributors", "Affiliates", "Phone", "TV" ,"X"};
 
-            SVG svg = new SVG() { { "width", "100%" }, { "height", "100%" }, { "viewBox", "0 0 100 100" } };
+            SVG svg = new SVG() { { "width", "100%" }, { "height", "100%" }, { "viewBox", "0 0 150 100" } };
             Rectangle rect = new Rectangle() { { "width", "100%" }, { "height", "100%" }, { "fill", "white" }, { "stroke", "gray" }, {"stroke-width", "0.5" } };
             svg.AddItems(rect);
             
             int numHorizontalLines = 10;
             int numVerticalLines = 10;
             double boundHeight = 100.0;
-            double boundWidth = 100.0;
+            double boundWidth = 150.0;
             double verticalStartSpace = 10.0;
-            double horizontalStartSpace = 10.0;
+            double horizontalStartSpace = 30.0;
             double verticalEndSpace = 5.0;
-            double horizontalEndSpace = 5.0;
+            double horizontalEndSpace = 20.0;
             double gridYUnits = 10;
             double gridXUnits = 10;
-            bool skipLastVerticalLine = true;
-            bool skipLastHorizontalLine = true;
+            bool skipLastVerticalLine = false;
+            bool skipLastHorizontalLine = false;
 
-            double verticalSpace = (boundHeight- verticalStartSpace-verticalEndSpace) / (numHorizontalLines-1);
-            double horizontalSpace = (boundWidth - horizontalStartSpace-horizontalEndSpace) / (numVerticalLines - 1);
+            double verticalSpace = (boundHeight- verticalStartSpace-verticalEndSpace) / (numHorizontalLines);
+            double horizontalSpace = (boundWidth - horizontalStartSpace-horizontalEndSpace) / (numVerticalLines);
 
-            double totalGridWidth = ((double)(numVerticalLines-1)) * horizontalSpace;
-            double totalGridHeight = ((double)(numHorizontalLines-1)) * verticalSpace;
+            double totalGridWidth = ((double)(numVerticalLines)) * horizontalSpace;
+            double totalGridHeight = ((double)(numHorizontalLines)) * verticalSpace;
             System.Diagnostics.Debug.WriteLine("TotalGridHeight:" + totalGridHeight+":"+ verticalSpace);
 
             double[] dAry = new double[inputDataArr.Length];
@@ -81,21 +81,24 @@ namespace WebAssemblyMan
             System.Diagnostics.Debug.WriteLine("inputDataArr Length:" + inputDataArr.Length);
 
             //Horizontal Lines
+            
             double y = verticalStartSpace;
             double startGridY = 0;
             i = 0;
-            for (int counter=0;counter< numHorizontalLines; counter++)
+            for (int counter=0;counter<= numHorizontalLines; counter++)
             {
                 System.Diagnostics.Debug.WriteLine("i:" + i);
-                if (counter == numHorizontalLines - 1 && skipLastHorizontalLine)
+                if (counter == numHorizontalLines  && skipLastHorizontalLine)
                 {
                     continue;
                 }
                 System.Diagnostics.Debug.WriteLine("y:" + i+":"+ inputDataArr.Length);
 
-                Path path = new Path() { { "fill", "none" }, { "stroke", "gray" }, { "stroke-width", "0.2" }, { "d", "M "+horizontalStartSpace.ToString()+" "+(boundHeight - y).ToString() + " L "+(boundWidth-horizontalEndSpace).ToString()+" "+(boundHeight - y).ToString() } };
-                Text label = new Text() { { "x", (horizontalStartSpace-2).ToString() }, { "y", (boundHeight - y).ToString() }, { "font-size", "4px" }, { "text-anchor", "end" }, { "content", (startGridY).ToString() } };
+                Path path = new Path() { { "fill", "none" }, { "stroke", "gray" }, { "stroke-width", "0.2" }, { "d", "M "+(horizontalStartSpace).ToString()+" "+(boundHeight - y).ToString() + " L "+(horizontalStartSpace+numHorizontalLines*gridXUnits).ToString()+" "+(boundHeight - y).ToString() } };
+                Text label = new Text() { { "x", (horizontalStartSpace-2).ToString() }, { "y", (boundHeight - y).ToString() }, { "font-size", "4px" }, { "text-anchor", "end" }, { "content", labels[counter] } };
                 System.Diagnostics.Debug.WriteLine("z:" + i);
+                /*
+                Text label = new Text() { { "x", (horizontalStartSpace-2).ToString() }, { "y", (boundHeight - y).ToString() }, { "font-size", "4px" }, { "text-anchor", "end" }, { "content", labels[counter]+(startGridY).ToString() } };
                 if (counter==0)
                     svg.AddItems(path,label);
                 else
@@ -114,6 +117,23 @@ namespace WebAssemblyMan
                         svg.AddItems(label);
                     }
                 }
+                */
+                if (counter==0)
+                    svg.AddItems(path,label);
+                if (i< (inputDataArr.Length))
+                {
+                    System.Diagnostics.Debug.WriteLine("i:" + i + ":" + dAry[i].ToString() + "px");
+                    System.Diagnostics.Debug.WriteLine("labelrect");
+                    Rectangle rectangle = new Rectangle() { { "fill", "#ce4b99" }, { "x", (horizontalStartSpace).ToString() }, { "y", (boundHeight - y - 5).ToString() }, { "width", dAry[i].ToString() + "px" }, { "height", "5px" } };
+                    svg.AddItems(label, rectangle);
+                    i++;
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("label");
+                    if (counter<numHorizontalLines)
+                        svg.AddItems(label);
+                }
 
                 System.Diagnostics.Debug.WriteLine("Y:" + y);
 
@@ -126,11 +146,12 @@ namespace WebAssemblyMan
             //Vertical Lines            
             double x = horizontalStartSpace;
             double startGridX = 0;
-            for (int counter = 0; counter < numVerticalLines; counter++)
+            for (int counter = 0; counter <= numVerticalLines; counter++)
             {
-                if (counter == numVerticalLines - 1 && skipLastVerticalLine)
+                
+                if (counter == numVerticalLines && skipLastVerticalLine)
                     continue;
-
+                
                 Path path = new Path() { { "fill", "none" }, { "stroke", "gray" }, { "stroke-width", "0.2" }, { "d", "M " + x.ToString() +" "+ (boundHeight-verticalStartSpace).ToString() + " L "+ x.ToString() + " " +(verticalEndSpace).ToString() } };
                 Text label = new Text() { {"x",x.ToString() }, { "y", (boundHeight - verticalStartSpace + 5).ToString() },{ "font-size", "4px" }, { "text-anchor", "middle" }, { "content", (startGridX).ToString() } };
                 startGridX = startGridX + gridXUnits;
@@ -139,10 +160,9 @@ namespace WebAssemblyMan
                 x = x + horizontalSpace;
             }
             
-
-
             BlazorRenderer blazorRenderer = new BlazorRenderer();
             blazorRenderer.Draw(seq, builder, svg);
+/*
             
             builder.OpenElement(++seq, "figcaption");
             builder.AddAttribute(++seq, "class", "linechart-key");
@@ -150,7 +170,6 @@ namespace WebAssemblyMan
             builder.AddAttribute(++seq, "class", "linechart-key-list");
             builder.AddAttribute(++seq, "aria-hidden", "true");
             builder.AddAttribute(++seq, "style", "list-style-type: none;");
-
 
             int colorcounter = 0;
             foreach (string iData in inputDataArr)
@@ -166,9 +185,9 @@ namespace WebAssemblyMan
                 builder.AddContent(++seq, labels[colorcounter++] );
                 builder.CloseElement();
             }
-
             builder.CloseElement();
             builder.CloseElement();
+*/
             
 
             builder.CloseElement();

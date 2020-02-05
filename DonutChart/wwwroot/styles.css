@@ -23,25 +23,6 @@ body {
     }
 }
 
-.doughnut-text {
-    fill: #000;
-    transform: translateY(0.25em);
-}
-
-.doughnut-number {
-    font-size: 0.5em;
-    line-height: 1;
-    text-anchor: middle;
-    transform: translateY(-0.25em);
-}
-
-.doughnut-label {
-    font-size: 0.2em;
-    text-transform: uppercase;
-    text-anchor: middle;
-    transform: translateY(0.3em);
-}
-
 figure {
     display: flex;
     justify-content: space-around;
@@ -51,7 +32,7 @@ figure {
 }
 
 .doughnut-main,
-.doughnut-legend {
+.doughnut-key {
     flex: 1;
     padding-left: 15px;
     padding-right: 15px;
@@ -62,33 +43,29 @@ figure {
         height: auto;
     }
 
-
-.doughnut-legend {
-    min-width: calc(8 / 12);
-}
-
-    .doughnut-legend [class*="dot-"] {
-        margin-right: 6px;
+    .doughnut-text {
+        fill: #000;
+        transform: translateY(0.25em);
     }
-
-.doughnut-legend-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-    .doughnut-legend-list li {
-        margin: 0 0 8px;
-        padding: 0;
+    
+    .doughnut-number {
+        font-size: 0.5em;
+        line-height: 1;
+        text-anchor: middle;
+        transform: translateY(-0.25em);
     }
+    
+    .doughnut-label {
+        font-size: 0.2em;
+        text-transform: uppercase;
+        text-anchor: middle;
+        transform: translateY(0.3em);
+    }
+    
 
-.doughnut-key {
-    min-width: calc(8 / 12);
-}
 
-
-    .doughnut-key [class*="shape-"] {
-        margin-right: 6px;
+    .doughnut-key [class*="round-"] {
+        margin-right: 10px;
     }
 
 .doughnut-key-list {
@@ -101,18 +78,6 @@ figure {
         margin: 0 0 8px;
         padding: 0;
     }
-
-.dot-red {
-    background-color: #c84b95;
-}
-
-.dot-green {
-    background-color: #27A844;
-}
-
-.dot-blue {
-    background-color: #3779b8;
-}
 
 .round-dot {
     margin: 5px;
