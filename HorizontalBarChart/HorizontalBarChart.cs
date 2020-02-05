@@ -43,18 +43,21 @@ namespace WebAssemblyMan
             int[] list3 = new int[8] { 0, 10, 10, 10, 10, 20, 70, 70 };
             int[][] lists = new int[][] { list1, list2, list3};
 
+            double boundHeight = 100.0;
+            double boundWidth = 150.0;
+
             string[] colors = { "#fe2712", "#fc600a", "#fb9902", "#fccc1a", "#fefe33", "#b2d732", "#66b032", "#347c98", "#0247fe", "#4424d6", "#8601af", "#c21460" };
 
             string[] labels = { "App Store", "Website", "Partners", "Direct", "Channels", "Retail", "Distributors", "Affiliates", "Phone", "TV" ,"X"};
 
-            SVG svg = new SVG() { { "width", "100%" }, { "height", "100%" }, { "viewBox", "0 0 150 100" } };
-            Rectangle rect = new Rectangle() { { "width", "100%" }, { "height", "100%" }, { "fill", "white" }, { "stroke", "gray" }, {"stroke-width", "0.5" } };
+            //Scale bigget to see
+            //SVG svg = new SVG() { { "width", "600" }, { "height", "400" }, { "viewBox", "0 0 150 100" }};
+            SVG svg = new SVG() { { "width", "300" }, { "height", "200" }, { "viewBox", "0 0 150 100" }};
+            Rectangle rect = new Rectangle() { { "width", "150" }, { "height", "100" }, { "fill", "white" }, { "stroke", "gray" }, {"stroke-width", "0.5" } };
             svg.AddItems(rect);
             
             int numHorizontalLines = 10;
             int numVerticalLines = 10;
-            double boundHeight = 100.0;
-            double boundWidth = 150.0;
             double verticalStartSpace = 10.0;
             double horizontalStartSpace = 30.0;
             double verticalEndSpace = 5.0;
@@ -97,27 +100,6 @@ namespace WebAssemblyMan
                 Path path = new Path() { { "fill", "none" }, { "stroke", "gray" }, { "stroke-width", "0.2" }, { "d", "M "+(horizontalStartSpace).ToString()+" "+(boundHeight - y).ToString() + " L "+(horizontalStartSpace+numHorizontalLines*gridXUnits).ToString()+" "+(boundHeight - y).ToString() } };
                 Text label = new Text() { { "x", (horizontalStartSpace-2).ToString() }, { "y", (boundHeight - y).ToString() }, { "font-size", "4px" }, { "text-anchor", "end" }, { "content", labels[counter] } };
                 System.Diagnostics.Debug.WriteLine("z:" + i);
-                /*
-                Text label = new Text() { { "x", (horizontalStartSpace-2).ToString() }, { "y", (boundHeight - y).ToString() }, { "font-size", "4px" }, { "text-anchor", "end" }, { "content", labels[counter]+(startGridY).ToString() } };
-                if (counter==0)
-                    svg.AddItems(path,label);
-                else
-                {
-                    if (i< (inputDataArr.Length))
-                    {
-                        System.Diagnostics.Debug.WriteLine("i:" + i + ":" + dAry[i].ToString() + "px");
-                        System.Diagnostics.Debug.WriteLine("labelrect");
-                        Rectangle rectangle = new Rectangle() { { "fill", "#ce4b99" }, { "x", (horizontalStartSpace).ToString() }, { "y", (boundHeight - y - 5).ToString() }, { "width", dAry[i].ToString() + "px" }, { "height", "5px" } };
-                        svg.AddItems(label, rectangle);
-                        i++;
-                    }
-                    else
-                    {
-                        System.Diagnostics.Debug.WriteLine("label");
-                        svg.AddItems(label);
-                    }
-                }
-                */
                 if (counter==0)
                     svg.AddItems(path,label);
                 if (i< (inputDataArr.Length))
