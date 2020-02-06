@@ -1,42 +1,45 @@
-﻿/*
-    This file is to show how CSS and other static resources (such as images) can be
-    used from a library project/package.
-*/
-
-.my-component {
-    border: 2px dashed red;
-    padding: 1em;
-    margin: 1em 0;
-    background-image: url('background.png');
+﻿
+.horizontal-bar-chart{
 }
 
-* {
-    box-sizing: border-box;
-}
-
-@media (min-width: 768px) {
-    figure {
-        flex-direction: row;
-    }
-}
-
-figure {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    margin-left: -15px;
-    margin-right: -15px;
-}
-
-.horizontalbarchart-main{
-    flex: 1;
-    padding-left: 15px;
-    padding-right: 15px;
-    align-self: flex-start;
-}
-
-    .horizontalbarchart-main svg {
-        height: auto;
+    .horizontal-bar-chart div {
     }
 
+    .horizontal-bar-chart div svg{
+    }
+
+    .horizontal-bar-chart div svg .background-rect{
+        width:100%;
+        height:100%;
+        fill:white;
+        stroke:white;
+        stroke-width:0.5;            
+    }
+
+    .horizontal-bar-chart div svg .horizontal-grid-lines{
+        fill:none;
+        stroke:gray;
+        stroke-width:0.2;
+    }
+
+    .horizontal-bar-chart div svg .x-axis-labels{
+        font-size:4px;
+        text-anchor:end;
+    }
+
+    .horizontal-bar-chart div svg .vertical-grid-lines{        
+        fill:none;
+        stroke:gray;
+        stroke-width:0.2;
+    }
+
+    .horizontal-bar-chart div svg .y-axis-labels{
+        font-size:4px;
+        text-anchor:middle;
+    }
+
+    .horizontal-bar-chart div svg .bar{
+        fill:black;
+    }
+    
 
