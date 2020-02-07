@@ -19,7 +19,11 @@ https://www.webassemblyman.com/blazor/blazorpiechart.html
 
 To use the Horizontal Bar Chart
 
-&lt;HorizontalBarChart InputData="30,70,42,50,3,55,35,22"&gt;&lt;/HorizontalBarChart&gt;
+&lt;HorizontalBarChart 
+    InputData="10,20,30,40,50,60,70,80,90,100"
+    InputLabels="App Store,Website,Partners,Direct,Channels,Retail,Distributors,Affiliates,Phone,TV"&gt;
+&lt;/HorizontalBarChart&gt;
+
 
 https://www.webassemblyman.com/blazor/blazorbarchart.html
 
