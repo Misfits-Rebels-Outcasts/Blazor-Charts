@@ -25,7 +25,7 @@ namespace WebAssemblyMan
             builder.OpenElement(seq, "figure");
             builder.AddAttribute(++seq, "class", "horizontal-bar-chart");
             builder.OpenElement(++seq, "div");
-            builder.AddAttribute(++seq, "class", "main");
+            //builder.AddAttribute(++seq, "class", "main");
 
             System.Diagnostics.Debug.WriteLine("ID"+InputData);
 
@@ -45,7 +45,7 @@ namespace WebAssemblyMan
             string[] labels = { "App Store", "Website", "Partners", "Direct", "Channels", "Retail", "Distributors", "Affiliates", "Phone", "TV" ,"X"};
 
 
-            SVG svg = new SVG() { { "class", "svg" }, { "width", "100%" }, { "height", "100%" }, { "viewBox", "0 0 150 100" }};
+            SVG svg = new SVG() { { "width", "100%" }, { "height", "100%" }, { "viewBox", "0 0 150 100" }};
             //Rectangle rect = new Rectangle() { { "class", "background-rect" }, { "width", "100%" }, { "height", "100%" }, { "fill", "white" }, { "stroke", "gray" }, {"stroke-width", "0.5" } };
             Rectangle rect = new Rectangle() { { "class", "background-rect" }};
             svg.AddItems(rect);

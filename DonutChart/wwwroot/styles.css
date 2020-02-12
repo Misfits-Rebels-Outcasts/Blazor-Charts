@@ -1,88 +1,165 @@
-﻿/*
-    This file is to show how CSS and other static resources (such as images) can be
-    used from a library project/package.
-*/
-
-.my-component {
-    border: 2px dashed red;
-    padding: 1em;
-    margin: 1em 0;
-    background-image: url('background.png');
+﻿.donut-chart{
 }
 
-
-* {
-    box-sizing: border-box;
-}
-
-@media (min-width: 768px) {
-    figure {
-        flex-direction: row;
-    }
-}
-
-figure {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    margin-left: -15px;
-    margin-right: -15px;
-}
-
-.doughnut-main,
-.doughnut-key {
-    flex: 1;
-    padding-left: 15px;
-    padding-right: 15px;
-    align-self: flex-start;
-}
-
-    .doughnut-main svg {
-        height: auto;
+    .donut-chart div {
     }
 
-    .doughnut-text {
+    .donut-chart div svg{
+    }
+
+    .donut-chart div svg .background-rect{
+        width:100%;
+        height:100%;
+        fill:white;
+        stroke:white;
+        stroke-width:0.5;            
+    }
+
+    .donut-chart div svg .hole{
+        fill: #fff;
+    }
+
+    .donut-chart div svg .ring{
+        fill: transparent;
+        stroke-width:3;
+        stroke:#d2d3d4;
+    }
+
+    .donut-chart div svg .segment-1{    
+        fill:transparent;
+        stroke-width:5;
+        stroke:#ce4b99
+    }
+    .donut-chart div svg .segment-2{    
+        fill:transparent;
+        stroke-width:5;
+        stroke:#27A844
+    }
+    .donut-chart div svg .segment-3{    
+        fill:transparent;
+        stroke-width:5;
+        stroke:#377bbc
+    }
+    .donut-chart div svg .segment-4{    
+        fill:transparent;
+        stroke-width:5;
+        stroke:#ff4b99
+    }
+    .donut-chart div svg .segment-5{    
+        fill:transparent;
+        stroke-width:5;
+        stroke:#ffA844
+    }
+    .donut-chart div svg .segment-6{    
+        fill:transparent;
+        stroke-width:5;
+        stroke:#bb7bbc
+    }
+    .donut-chart div svg .segment-7{    
+        fill:transparent;
+        stroke-width:5;
+        stroke:#554b99
+    }
+    .donut-chart div svg .segment-8{    
+        fill:transparent;
+        stroke-width:5;
+        stroke:#88A844
+    }
+    .donut-chart div svg .segment-9{    
+        fill:transparent;
+        stroke-width:5;
+        stroke:#EEA844
+    }
+    .donut-chart div svg .segment-10{    
+        fill:transparent;
+        stroke-width:5;
+        stroke:#FFF844
+    }
+
+    .donut-chart div svg .donut-text {
         fill: #000;
         transform: translateY(0.25em);
     }
     
-    .doughnut-number {
+    .donut-chart div svg g .donut-number {
         font-size: 0.5em;
         line-height: 1;
         text-anchor: middle;
         transform: translateY(-0.25em);
     }
     
-    .doughnut-label {
+    .donut-chart div svg g .donut-label {
         font-size: 0.2em;
         text-transform: uppercase;
         text-anchor: middle;
         transform: translateY(0.3em);
     }
-    
 
-
-    .doughnut-key [class*="round-"] {
+    .donut-chart div .donut-key [class*="legend-"] {
+        margin: 5px;
         margin-right: 10px;
+        display: inline-block;
+        vertical-align: middle;
+        width: 20px;
+        height: 20px;
+        /*
+        width: 26px;
+        height: 26px;
+        */
+        border-radius: 50%;
     }
 
-.doughnut-key-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
+    .donut-chart div figcaption .donut-key-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-size: 0.9em;
+    }
 
-    .doughnut-key-list li {
+    .donut-chart div figcaption .donut-key-list li {
         margin: 0 0 8px;
         padding: 0;
+
     }
 
-.round-dot {
-    margin: 5px;
-    display: inline-block;
-    vertical-align: middle;
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-}
+    .donut-chart div figcaption ul .legend-dot-1 {
+        background:#ce4b99;
+        transform: translateY(-0.1em);
+    }
+    .donut-chart div figcaption ul .legend-dot-2 {
+        background:#27A844;
+        transform: translateY(-0.1em);
+    }
+    .donut-chart div figcaption ul .legend-dot-3 {
+        background:#377bbc;
+        transform: translateY(-0.1em);
+    }
+    .donut-chart div figcaption ul .legend-dot-4 {
+        background:#ff4b99;
+        transform: translateY(-0.1em);
+    }
+    .donut-chart div figcaption ul .legend-dot-5 {
+        background:#ffA844;
+        transform: translateY(-0.1em);
+    }
+    .donut-chart div figcaption ul .legend-dot-6 {
+        background:#bb7bbc;
+        transform: translateY(-0.1em);
+    }
+    .donut-chart div figcaption ul .legend-dot-7 {
+        background:#554b99;
+        transform: translateY(-0.1em);
+    }
+    .donut-chart div figcaption ul .legend-dot-8 {
+        background:#88A844;
+        transform: translateY(-0.1em);
+    }
+    .donut-chart div figcaption ul .legend-dot-9 {
+        background:#EEA844;
+        transform: translateY(-0.1em);
+    }
+    .donut-chart div figcaption ul .legend-dot-10 {
+        background:#FFF844;
+        transform: translateY(-0.1em);
+    }
 
