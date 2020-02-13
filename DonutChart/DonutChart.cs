@@ -13,6 +13,8 @@ namespace WebAssemblyMan
     /*
     1. Total as Label Number
     2. Input for Label Text
+    3. CSS Consistency for key and keylist in donut and pie chart
+    4. 
     */
     public class DonutChart : ComponentBase
     {
@@ -32,7 +34,7 @@ namespace WebAssemblyMan
             builder.OpenElement(++seq, "div");
             builder.AddAttribute(++seq, "class", "main");
 
-            SVG svg = new SVG() { { "width", "100%" }, { "height", "100%" }, { "viewBox", "0 0 42 42" } };
+            SVG svg = new SVG() { { "width", "80%" }, { "height", "80%" }, { "viewBox", "0 0 42 42" } };
             Rectangle rect = new Rectangle() { { "class", "background-rect" }, { "width", "100%" }, { "height", "100%" }, { "fill", "white" } };
             /*
             Circle hole = new Circle() { { "class", "hole" }, { "cx", "21" }, { "cy", "21" }, { "r", "15.915" }, { "fill", "#fff" } };

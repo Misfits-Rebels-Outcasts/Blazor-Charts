@@ -46,15 +46,12 @@ namespace WebAssemblyMan
             builder.AddAttribute(++seq, "class", "main");
 
             //SVG svg = new SVG() { { "width", "100%" }, { "height", "100%" }, { "viewBox", "0 0 42 42" } };
-            SVG svg = new SVG() { { "width", "100%" }, { "height", "100%" }, { "viewBox", "-1 -1 2 2" },{"style","transform: rotate(-90deg)" } };
-
-            Rectangle rect = new Rectangle() { { "class", "background-rect" }, { "width", "100%" }, { "height", "100%" }, { "fill", "white" } };
-
+            SVG svg = new SVG() { { "width", "80%" }, { "height", "80%" }, { "viewBox", "-1 -1 2 2" },{"style","transform: rotate(-90deg)" } };
+            
             double x, y;
             double px=0, py=0;
             double totalPercent = 0;
             string prStr = pieRadius.ToString();
-
             for (int icounter=0; icounter < inputDataArr.Length; icounter++)
             {
                 double percent = double.Parse(inputDataArr[icounter])/100;

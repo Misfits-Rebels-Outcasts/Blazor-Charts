@@ -38,23 +38,23 @@ namespace WebAssemblyMan
             int[] list3 = new int[8] { 0, 10, 10, 10, 10, 20, 70, 70 };
             int[][] lists = new int[][] { list1, list2, list3};
             */
-            double boundHeight = 100.0;
+            double boundHeight = 150.0;
             double boundWidth = 150.0;
 
             //string[] colors = { "#fe2712", "#fc600a", "#fb9902", "#fccc1a", "#fefe33", "#b2d732", "#66b032", "#347c98", "#0247fe", "#4424d6", "#8601af", "#c21460" };
             //string[] labels = { "App Store", "Website", "Partners", "Direct", "Channels", "Retail", "Distributors", "Affiliates", "Phone", "TV" ,"X"};
 
 
-            SVG svg = new SVG() { { "width", "100%" }, { "height", "100%" }, { "viewBox", "0 0 150 100" }};
+            SVG svg = new SVG() { { "width", "100%" }, { "height", "100%" }, { "viewBox", "0 0 150 150" }};
             //Rectangle rect = new Rectangle() { { "class", "background-rect" }, { "width", "100%" }, { "height", "100%" }, { "fill", "white" }, { "stroke", "gray" }, {"stroke-width", "0.5" } };
             Rectangle rect = new Rectangle() { { "class", "background-rect" }};
             svg.AddItems(rect);
             
             int numHorizontalLines = 10;
             int numVerticalLines = 10;
-            double verticalStartSpace = 10.0;
+            double verticalStartSpace = 25.0;
             double horizontalStartSpace = 30.0;
-            double verticalEndSpace = 5.0;
+            double verticalEndSpace = 25.0;
             double horizontalEndSpace = 20.0;
             double gridYUnits = 10;
             double gridXUnits = 10;
@@ -93,7 +93,7 @@ namespace WebAssemblyMan
                 */
                 
                 Path path = new Path() { { "class", "vertical-grid-lines" }, { "d", "M " + x.ToString() +" "+ (boundHeight-verticalStartSpace).ToString() + " L "+ x.ToString() + " " +(verticalEndSpace).ToString() } };
-                Text label = new Text() { { "class", "y-axis-labels" }, {"x",x.ToString() }, { "y", (boundHeight - verticalStartSpace + 5).ToString() },{ "content", (startGridX).ToString() } };
+                Text label = new Text() { { "class", "x-axis-labels" }, {"x",x.ToString() }, { "y", (boundHeight - verticalStartSpace + 5).ToString() },{ "content", (startGridX).ToString() } };
                 
                 startGridX = startGridX + gridXUnits;
 
@@ -119,13 +119,12 @@ namespace WebAssemblyMan
                 Path path = new Path() { { "class", "horizontal-grid-lines" }, { "fill", "none" }, { "stroke", "gray" }, { "stroke-width", "0.2" }, { "d", "M "+(horizontalStartSpace).ToString()+" "+(boundHeight - y).ToString() + " L "+(horizontalStartSpace+numHorizontalLines*gridXUnits).ToString()+" "+(boundHeight - y).ToString() } };
                 Text label = new Text() { { "class", "x-axis-labels" }, { "x", (horizontalStartSpace-2).ToString() }, { "y", (boundHeight - y).ToString() }, { "font-size", "4px" }, { "text-anchor", "end" }, { "content", labels[counter] } };
                 */
-                Path path = new Path() { { "class", "horizontal-grid-lines"}, { "d", "M "+(horizontalStartSpace).ToString()+" "+(boundHeight - y).ToString() + " L "+(horizontalStartSpace+numHorizontalLines*gridXUnits).ToString()+" "+(boundHeight - y).ToString() } };                
+                Path path = new Path() { { "class", "horizontal-grid-lines"}, { "d", "M "+(horizontalStartSpace).ToString()+" "+(boundHeight - y).ToString() + " L "+(horizontalStartSpace+numHorizontalLines*horizontalSpace).ToString()+" "+(boundHeight - y).ToString() } };                
                 string xLabels="";
                 if (counter<inputLabelsArr.Length)
                     xLabels=inputLabelsArr[counter];
-                Text label = new Text() { { "class", "x-axis-labels" }, { "x", (horizontalStartSpace-2).ToString() }, { "y", (boundHeight - y).ToString() }, { "content", xLabels } };
+                Text label = new Text() { { "class", "y-axis-labels" }, { "x", (horizontalStartSpace-2).ToString() }, { "y", (boundHeight - y).ToString() }, { "content", xLabels } };
                 
-
                 System.Diagnostics.Debug.WriteLine("z:" + i);
                 if (counter==0)
                     svg.AddItems(path,label);

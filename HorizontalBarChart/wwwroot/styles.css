@@ -12,7 +12,7 @@
         width:100%;
         height:100%;
         fill:white;
-        stroke:white;
+        stroke:lightgray;
         stroke-width:0.5;            
     }
 
@@ -22,7 +22,7 @@
         stroke-width:0.2;
     }
 
-    .horizontal-bar-chart div svg .x-axis-labels{
+    .horizontal-bar-chart div svg .y-axis-labels{
         font-size:4px;
         text-anchor:end;
     }
@@ -33,10 +33,12 @@
         stroke-width:0.2;
     }
 
-    .horizontal-bar-chart div svg .y-axis-labels{
+    .horizontal-bar-chart div svg .x-axis-labels{
         font-size:4px;
         text-anchor:middle;
     }
+
+
 
     .horizontal-bar-chart div svg .bar{
         fill:#ce4b99;

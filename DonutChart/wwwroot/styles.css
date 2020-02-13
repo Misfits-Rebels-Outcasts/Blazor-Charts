@@ -2,9 +2,16 @@
 }
 
     .donut-chart div {
+        background:white;
+        border: white;
+        border-style: solid;
+        border-width: 1px;
     }
 
     .donut-chart div svg{
+        display: block;
+        margin: auto;
+
     }
 
     .donut-chart div svg .background-rect{
@@ -12,7 +19,7 @@
         height:100%;
         fill:white;
         stroke:white;
-        stroke-width:0.5;            
+        stroke-width:0.2;            
     }
 
     .donut-chart div svg .hole{
@@ -93,6 +100,10 @@
         text-transform: uppercase;
         text-anchor: middle;
         transform: translateY(0.3em);
+    }
+
+    .donut-chart div .donut-key{
+        margin: 20px;
     }
 
     .donut-chart div .donut-key [class*="legend-"] {

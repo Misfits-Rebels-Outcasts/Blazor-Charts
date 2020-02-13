@@ -3,6 +3,10 @@
 }
 
     .line-chart div {
+        background:white;
+        border: white;
+        border-style: solid;
+        border-width: 1px;
     }
 
     .line-chart div svg{
@@ -12,7 +16,7 @@
         width:100%;
         height:100%;
         fill:white;
-        stroke:white;
+        stroke:lightgray;
         stroke-width:0.5;            
     }
 
@@ -88,8 +92,11 @@
         stroke:#66b032;
         stroke-width: 1.0;
     }
+    .line-chart div .key{
+        margin: 20px;
+    }
 
-    .line-chart div .linechart-key [class*="legend-"] {
+    .line-chart div .key [class*="legend-"] {
         margin: 5px;
         margin-right: 10px;
         display: inline-block;
@@ -103,56 +110,56 @@
         border-radius: 50%;
     }
 
-    .line-chart div figcaption .linechart-key-list {
+    .line-chart div figcaption .key-list {
         margin: 0;
         padding: 0;
         list-style: none;
         font-size: 0.9em;
     }
 
-    .line-chart div figcaption .linechart-key-list li {
+    .line-chart div figcaption .key-list li {
         margin: 0 0 8px;
         padding: 0;
 
     }
 
-    .line-chart div figcaption ul .legend-dot-1 {
+    .line-chart div figcaption ul .legend-1 {
         background:#ce4b99;
         transform: translateY(-0.1em);
     }
-    .line-chart div figcaption ul .legend-dot-2 {
+    .line-chart div figcaption ul .legend-2 {
         background:#27A844;
         transform: translateY(-0.1em);
     }
-    .line-chart div figcaption ul .legend-dot-3 {
+    .line-chart div figcaption ul .legend-3 {
         background:#377bbc;
         transform: translateY(-0.1em);
     }
-    .line-chart div figcaption ul .legend-dot-4 {
+    .line-chart div figcaption ul .legend-4 {
         background:#fe2712;
         transform: translateY(-0.1em);
     }
-    .line-chart div figcaption ul .legend-dot-5 {
+    .line-chart div figcaption ul .legend-5 {
         background:#fc600a;
         transform: translateY(-0.1em);
     }
-    .line-chart div figcaption ul .legend-dot-6 {
+    .line-chart div figcaption ul .legend-6 {
         background:#fb9902;
         transform: translateY(-0.1em);
     }
-    .line-chart div figcaption ul .legend-dot-7 {
+    .line-chart div figcaption ul .legend-7 {
         background:#fccc1a;
         transform: translateY(-0.1em);
     }
-    .line-chart div figcaption ul .legend-dot-8 {
+    .line-chart div figcaption ul .legend-8 {
         background:#fefe33;
         transform: translateY(-0.1em);
     }
-    .line-chart div figcaption ul .legend-dot-9 {
+    .line-chart div figcaption ul .legend-9 {
         background:#b2d732;
         transform: translateY(-0.1em);
     }
-    .line-chart div figcaption ul .legend-dot-10 {
+    .line-chart div figcaption ul .legend-10 {
         background:#66b032;
         transform: translateY(-0.1em);
     }

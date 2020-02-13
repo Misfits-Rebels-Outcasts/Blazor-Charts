@@ -55,28 +55,29 @@ namespace WebAssemblyMan
             string[] colors = { "#ce4b99", "#27A844", "#377bbc" };
             string[] labels = { "App Store", "Website", "Partners" };            
 
-            SVG svg = new SVG() { { "width", "100%" }, { "height", "100%" }, { "viewBox", "0 0 100 100" } };
+            double boundHeight = 150.0;
+            double boundWidth = 150.0;
+
+            SVG svg = new SVG() { { "width", "100%" }, { "height", "100%" }, { "viewBox", "0 0 150 150" } };
             //Rectangle rect = new Rectangle() { { "class", "background-rect" }, { "width", "100%" }, { "height", "100%" }, { "fill", "white" }, { "stroke", "gray" }, {"stroke-width", "0.5" } };
             //Rectangle rect = new Rectangle() { { "width", "100%" }, { "height", "100%" }, { "fill", "cyan" }};
             Rectangle rect = new Rectangle() { { "class", "background-rect" }};
             svg.AddItems(rect);
 
 
-            int numHorizontalLines = 10+1;
-            int numVerticalLines = 10+1;
-            double boundHeight = 100.0;
-            double boundWidth = 100.0;
-            double verticalStartSpace = 10.0;
-            double horizontalStartSpace = 10.0;
-            double verticalEndSpace = 5.0;
-            double horizontalEndSpace = 5.0;
+            int numHorizontalLines = 10;
+            int numVerticalLines = 10;
+            double verticalStartSpace = 25.0;
+            double horizontalStartSpace = 25.0;
+            double verticalEndSpace = 25.0;
+            double horizontalEndSpace = 25.0;
             double gridYUnits = 10;
             double gridXUnits = 10;
             //bool skipLastVerticalLine = true;
             //bool skipLastHorizontalLine = true;
 
-            double verticalSpace = (boundHeight- verticalStartSpace-verticalEndSpace) / (numHorizontalLines-1);
-            double horizontalSpace = (boundWidth - horizontalStartSpace-horizontalEndSpace) / (numVerticalLines - 1);
+            double verticalSpace = (boundHeight- verticalStartSpace-verticalEndSpace) / (numHorizontalLines);
+            double horizontalSpace = (boundWidth - horizontalStartSpace-horizontalEndSpace) / (numVerticalLines);
 
             double totalGridWidth = ((double)(numVerticalLines-1)) * horizontalSpace;
             double totalGridHeight = ((double)(numHorizontalLines-1)) * verticalSpace;
@@ -166,9 +167,9 @@ namespace WebAssemblyMan
             blazorRenderer.Draw(seq, builder, svg);
             
             builder.OpenElement(++seq, "figcaption");
-            builder.AddAttribute(++seq, "class", "linechart-key");
+            builder.AddAttribute(++seq, "class", "key");
             builder.OpenElement(++seq, "ul");
-            builder.AddAttribute(++seq, "class", "linechart-key-list");
+            builder.AddAttribute(++seq, "class", "key-list");
             //builder.AddAttribute(++seq, "aria-hidden", "true");
             //builder.AddAttribute(++seq, "style", "list-style-type: none;");
 
@@ -178,7 +179,7 @@ namespace WebAssemblyMan
                 //int data = int.Parse(dataStr);
                 builder.OpenElement(++seq, "li");
                 builder.OpenElement(++seq, "span");
-                builder.AddAttribute(++seq, "class", "legend-dot-"+(colorcounter+1).ToString());
+                builder.AddAttribute(++seq, "class", "legend-"+(colorcounter+1).ToString());
                 //builder.AddAttribute(++seq, "style", "background-color:" + colors[colorcounter]);
 
                 builder.CloseElement();
