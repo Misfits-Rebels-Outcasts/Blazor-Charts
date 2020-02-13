@@ -1,86 +1,147 @@
-﻿/*
-    This file is to show how CSS and other static resources (such as images) can be
-    used from a library project/package.
-*/
-
-.my-component {
-    border: 2px dashed red;
-    padding: 1em;
-    margin: 1em 0;
-    background-image: url('background.png');
+﻿.pie-chart{
 }
 
-body {
-}
-
-* {
-    box-sizing: border-box;
-}
-
-@media (min-width: 768px) {
-    figure {
-        flex-direction: row;
+    .pie-chart div {
     }
-}
 
-figure {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    margin-left: -15px;
-    margin-right: -15px;
-}
+    .pie-chart div svg{
+    }
 
-.dot-red {
-    background-color: #c84b95;
-}
+    .pie-chart div svg .background-rect{
+        width:100%;
+        height:100%;
+        fill:white;
+        stroke:white;
+        stroke-width:0.5;            
+    }
 
-.dot-green {
-    background-color: #27A844;
-}
+    .pie-chart div svg .hole{
+        fill: #fff;
+    }
 
-.dot-blue {
-    background-color: #3779b8;
-}
-
-.round-dot {
-    margin: 5px;
-    display: inline-block;
-    vertical-align: middle;
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-}
-
-.piechart-main,
-.piechart-legend {
-    flex: 1;
-    padding-left: 15px;
-    padding-right: 15px;
-    align-self: flex-start;
-}
-
-.piechart-main svg {
-    height: auto;
-}
-
-.piechart-key {
-    min-width: calc(8 / 12);
-}
+    .pie-chart div svg .ring{
+        fill: transparent;
+        stroke-width:3;
+        stroke:#d2d3d4;
+    }
 
 
-.piechart-key [class*="shape-"] {
-    margin-right: 6px;
-}
+    .pie-chart div svg .segment-1{    
+        fill:#ce4b99
+    }
+    .pie-chart div svg .segment-2{    
+        fill:#27A844
+    }
+    .pie-chart div svg .segment-3{    
+        fill:#377bbc
+    }
+    .pie-chart div svg .segment-4{    
+        fill:#fe2712
+    }
 
-.piechart-key-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
+    .pie-chart div svg .segment-5{    
+        fill:#fc600a
+    }
+    .pie-chart div svg .segment-6{    
+        fill:#fb9902
+    }
+    .pie-chart div svg .segment-7{    
+        fill:#fccc1a
+    }
+    .pie-chart div svg .segment-8{    
+        fill:#fefe33
+    }
+    .pie-chart div svg .segment-9{    
+        fill:#b2d732
+    }
+    .pie-chart div svg .segment-10{    
+        fill:#66b032
+    }
+/*
+    .pie-chart div svg .pie-text {
+        fill: #000;
+        transform: translateY(0.25em);
+    }
+    
+    .pie-chart div svg g .pie-number {
+        font-size: 0.5em;
+        line-height: 1;
+        text-anchor: middle;
+        transform: translateY(-0.25em);
+    }
+    
+    .pie-chart div svg g .pie-label {
+        font-size: 0.2em;
+        text-transform: uppercase;
+        text-anchor: middle;
+        transform: translateY(0.3em);
+    }
+*/
+    .pie-chart div .pie-key [class*="legend-"] {
+        margin: 5px;
+        margin-right: 10px;
+        display: inline-block;
+        vertical-align: middle;
+        width: 20px;
+        height: 20px;
+        /*
+        width: 26px;
+        height: 26px;
+        */
+        border-radius: 50%;
+    }
 
-.piechart-key-list li {
-    margin: 0 0 8px;
-    padding: 0;
-}
+    .pie-chart div figcaption .pie-key-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-size: 0.9em;
+    }
+
+    .pie-chart div figcaption .pie-key-list li {
+        margin: 0 0 8px;
+        padding: 0;
+
+    }
+
+    .pie-chart div figcaption ul .legend-dot-1 {
+        background:#ce4b99;
+        transform: translateY(-0.1em);
+    }
+    .pie-chart div figcaption ul .legend-dot-2 {
+        background:#27A844;
+        transform: translateY(-0.1em);
+    }
+    .pie-chart div figcaption ul .legend-dot-3 {
+        background:#377bbc;
+        transform: translateY(-0.1em);
+    }
+    .pie-chart div figcaption ul .legend-dot-4 {
+        background:#fe2712;
+        transform: translateY(-0.1em);
+    }
+    .pie-chart div figcaption ul .legend-dot-5 {
+        background:#fc600a;
+        transform: translateY(-0.1em);
+    }
+    .pie-chart div figcaption ul .legend-dot-6 {
+        background:#fb9902;
+        transform: translateY(-0.1em);
+    }
+    .pie-chart div figcaption ul .legend-dot-7 {
+        background:#fccc1a;
+        transform: translateY(-0.1em);
+    }
+    .pie-chart div figcaption ul .legend-dot-8 {
+        background:#fefe33;
+        transform: translateY(-0.1em);
+    }
+    .pie-chart div figcaption ul .legend-dot-9 {
+        background:#b2d732;
+        transform: translateY(-0.1em);
+    }
+    .pie-chart div figcaption ul .legend-dot-10 {
+        background:#66b032;
+        transform: translateY(-0.1em);
+    }
 

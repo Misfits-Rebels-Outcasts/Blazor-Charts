@@ -22,97 +22,26 @@
         stroke-width:0.2;
     }
 
-    .vertical-bar-chart div svg .x-axis-labels{
+    .vertical-bar-chart div svg .y-axis-labels{
         font-size:4px;
         text-anchor:end;
     }
 
+/*
     .vertical-bar-chart div svg .vertical-grid-lines{        
         fill:none;
         stroke:gray;
         stroke-width:0.2;
     }
-
-    .vertical-bar-chart div svg .y-axis-labels{
+*/
+    .vertical-bar-chart div svg .x-axis-labels{
         font-size:4px;
-        text-anchor:middle;
+        text-anchor:end;
     }
 
     .vertical-bar-chart div svg .bar{
-        fill:black;
+        fill:#27A844;
+        width:5px;
     }
     
 
-
-/*
-.my-component {
-    border: 2px dashed red;
-    padding: 1em;
-    margin: 1em 0;
-    background-image: url('background.png');
-}
-
-body {
-}
-
-* {
-    box-sizing: border-box;
-}
-
-@media (min-width: 768px) {
-    figure {
-        flex-direction: row;
-    }
-}
-
-figure {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    margin-left: -15px;
-    margin-right: -15px;
-}
-
-.linechart-main,
-.linechart-legend {
-    flex: 1;
-    padding-left: 15px;
-    padding-right: 15px;
-    align-self: flex-start;
-}
-
-    .linechart-main svg {
-        height: auto;
-    }
-
-
-.linechart-key {
-    min-width: calc(8 / 12);
-}
-
-
-.linechart-key [class*="shape-"] {
-    margin-right: 6px;
-}
-
-.linechart-key-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.linechart-key-list li {
-    margin: 0 0 8px;
-    padding: 0;
-}
-
-.round-dot {
-    margin: 5px;
-    display: inline-block;
-    vertical-align: middle;
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-}
-
-*/

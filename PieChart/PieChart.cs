@@ -9,10 +9,18 @@ using WebAssemblyMan.SVGRender;
 
 namespace WebAssemblyMan
 {
+    //TODO
+    /*
+    1. Total as Label Number
+    2. Input for Label Text
+    */
     public class PieChart : ComponentBase
     {
         [Parameter]
         public string InputData { get; set; }
+
+        [Parameter]
+        public string InputLabels { get; set; }
 
         private double pieRadius = 0.85;    
         private void getCoordinatesForPercent(double percent, out double x, out double y)
@@ -24,20 +32,23 @@ namespace WebAssemblyMan
             Console.WriteLine("yy:"+ y);
 
         }
+
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
+            string[] colors = { "#ce4b99", "#27A844", "#377bbc","#fe2712", "#fc600a", "#fb9902","#fccc1a", "#fefe33", "#b2d732", "#66b032", "#347c98", "#0247fe", "#4424d6","#8601af","#c21460" };
+            string[] inputDataArr = InputData.Split(',');
+            string[] inputLabelsArr = InputLabels.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
             var seq = 0;
             builder.OpenElement(seq, "figure");
+            builder.AddAttribute(++seq, "class", "pie-chart");
             builder.OpenElement(++seq, "div");
-            builder.AddAttribute(++seq, "class", "piechart-main");
+            builder.AddAttribute(++seq, "class", "main");
 
-            int[] inputData = { 30, 30, 40 };
-            string[] colors = { "#ce4b99", "#27A844", "#377bbc" };
-            string[] labels = { "App Store", "Website", "Partners" };
-            string[] inputDataArr = InputData.Split(',');
-
-
+            //SVG svg = new SVG() { { "width", "100%" }, { "height", "100%" }, { "viewBox", "0 0 42 42" } };
             SVG svg = new SVG() { { "width", "100%" }, { "height", "100%" }, { "viewBox", "-1 -1 2 2" },{"style","transform: rotate(-90deg)" } };
+
+            Rectangle rect = new Rectangle() { { "class", "background-rect" }, { "width", "100%" }, { "height", "100%" }, { "fill", "white" } };
 
             double x, y;
             double px=0, py=0;
@@ -51,48 +62,58 @@ namespace WebAssemblyMan
                 getCoordinatesForPercent(totalPercent, out x, out y);
                 Path path = null;
                 if (icounter == 0)
-                    path = new Path() { { "fill", colors[icounter] }, { "d", "M " + prStr + " 0 A " + prStr + " " + prStr + " 0 0 1 " + x + " " + y + " L 0 0" } };
+                    path = new Path() { {"class","segment-"+(icounter+1).ToString()},  { "d", "M " + prStr + " 0 A " + prStr + " " + prStr + " 0 0 1 " + x + " " + y + " L 0 0" } };
                 else 
                 {
                     if (percent > 0.5)
-                        path = new Path() { { "fill", colors[icounter] }, { "d", "M " + px + " " + py + " A " + prStr + " " + prStr + " 0 1 1 " + x + " " + y + " L 0 0" } };
+                        path = new Path() { {"class","segment-"+(icounter+1).ToString()}, { "d", "M " + px + " " + py + " A " + prStr + " " + prStr + " 0 1 1 " + x + " " + y + " L 0 0" } };
                     else
-                        path = new Path() { { "fill", colors[icounter] }, { "d", "M " + px + " " + py + " A " + prStr + " " + prStr + " 0 0 1 " + x + " " + y + " L 0 0" } };
+                        path = new Path() { {"class","segment-"+(icounter+1).ToString()}, { "d", "M " + px + " " + py + " A " + prStr + " " + prStr + " 0 0 1 " + x + " " + y + " L 0 0" } };
                 }
 
                 svg.AddItems(path);
                 px = x; py = y;
 
             }
+
             BlazorRenderer blazorRenderer = new BlazorRenderer();
             blazorRenderer.Draw(seq, builder, svg);
             
             builder.OpenElement(++seq, "figcaption");
-            builder.AddAttribute(++seq, "class", "piechart-key");
+            builder.AddAttribute(++seq, "class", "pie-key");
             builder.OpenElement(++seq, "ul");
-            builder.AddAttribute(++seq, "class", "piechart-key-list");
+            builder.AddAttribute(++seq, "class", "pie-key-list");
             builder.AddAttribute(++seq, "aria-hidden", "true");
             builder.AddAttribute(++seq, "style", "list-style-type: none;");
 
             int counter = 0;
             foreach (string dataStr in inputDataArr)
             {
-                int data = int.Parse(dataStr);
+                double data = double.Parse(dataStr);
                 builder.OpenElement(++seq, "li");
                 builder.OpenElement(++seq, "span");
-                builder.AddAttribute(++seq, "class", "round-dot");
-                builder.AddAttribute(++seq, "style", "background-color:" + colors[counter]);
+                builder.AddAttribute(++seq, "class", "legend-dot-"+(counter+1).ToString());
 
                 builder.CloseElement();
-                builder.AddContent(++seq, labels[counter++] + " " + "(" + data.ToString() + ")");
+
+                string labels="";
+                if (counter<inputLabelsArr.Length)
+                {
+                    labels=inputLabelsArr[counter];
+                    counter++;
+                }
+
+                builder.AddContent(++seq, labels+" "+"("+data.ToString()+")");
                 builder.CloseElement();
             }
-
             builder.CloseElement();
             builder.CloseElement();
             
+
             builder.CloseElement();
             builder.CloseElement();
+
+   
 
         }
     }
