@@ -1,6 +1,8 @@
 # Blazor-Charts
 This is an Open Source SVG (Scalable Vector Graphics) Charts for Blazor and WebAssembly. It uses C#, HTML and CSS with minimal Javascript dependencies.  
 
+&num;elegantlysimple
+
 v0.1
 
 [![MIT Licence](https://www.webassemblyman.com/images/mitlicense.png)](https://www.webassemblyman.com/MITLicense.txt)
