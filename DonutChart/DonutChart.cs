@@ -14,7 +14,9 @@ namespace WebAssemblyMan
     1. Total as Label Number
     2. Input for Label Text
     3. CSS Consistency for key and keylist in donut and pie chart
-    4. 
+    4. Title
+    5. Validation
+    6. Setting of axis scale 
     */
     public class DonutChart : ComponentBase
     {
