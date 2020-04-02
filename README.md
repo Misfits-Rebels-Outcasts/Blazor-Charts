@@ -10,7 +10,7 @@ v0.1
 To use the Donut Chart
 
 &lt;DonutChart InputData="10,30,20,10,10,10,5,5" 
-               InputLabels="App Store,Website,Partners,Direct,Channels,Retail,Distributors,Affiliates">
+               InputLabels="App Store,Website,Partners,Direct,Channels,Retail,Distributors,Affiliates" PrimaryText="150" SecondaryText="Sales">
 &lt;/DonutChart>
 
 https://www.webassemblyman.com/blazor/blazordonutchart.html
