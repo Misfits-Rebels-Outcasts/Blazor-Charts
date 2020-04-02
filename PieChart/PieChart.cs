@@ -9,11 +9,6 @@ using WebAssemblyMan.SVGRender;
 
 namespace WebAssemblyMan
 {
-    //TODO
-    /*
-    1. Total as Label Number
-    2. Input for Label Text
-    */
     public class PieChart : ComponentBase
     {
         [Parameter]
@@ -35,7 +30,7 @@ namespace WebAssemblyMan
 
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
-            string[] colors = { "#ce4b99", "#27A844", "#377bbc","#fe2712", "#fc600a", "#fb9902","#fccc1a", "#fefe33", "#b2d732", "#66b032", "#347c98", "#0247fe", "#4424d6","#8601af","#c21460" };
+            //string[] colors = { "#ce4b99", "#27A844", "#377bbc","#fe2712", "#fc600a", "#fb9902","#fccc1a", "#fefe33", "#b2d732", "#66b032", "#347c98", "#0247fe", "#4424d6","#8601af","#c21460" };
             string[] inputDataArr = InputData.Split(',');
             string[] inputLabelsArr = InputLabels.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -45,7 +40,6 @@ namespace WebAssemblyMan
             builder.OpenElement(++seq, "div");
             builder.AddAttribute(++seq, "class", "main");
 
-            //SVG svg = new SVG() { { "width", "100%" }, { "height", "100%" }, { "viewBox", "0 0 42 42" } };
             SVG svg = new SVG() { { "width", "80%" }, { "height", "80%" }, { "viewBox", "-1 -1 2 2" },{"style","transform: rotate(-90deg)" } };
             
             double x, y;
@@ -54,7 +48,11 @@ namespace WebAssemblyMan
             string prStr = pieRadius.ToString();
             for (int icounter=0; icounter < inputDataArr.Length; icounter++)
             {
-                double percent = double.Parse(inputDataArr[icounter])/100;
+                double data = 0;
+                bool isDouble2=double.TryParse(inputDataArr[icounter],out data);
+                double percent = data/100;
+
+                //double percent = double.Parse(inputDataArr[icounter])/100;
                 totalPercent = totalPercent + percent;
                 getCoordinatesForPercent(totalPercent, out x, out y);
                 Path path = null;
@@ -100,7 +98,7 @@ namespace WebAssemblyMan
                     counter++;
                 }
 
-                builder.AddContent(++seq, labels+" "+"("+data.ToString()+")");
+                builder.AddContent(++seq, labels+" "+"("+data.ToString()+"%)");
                 builder.CloseElement();
             }
             builder.CloseElement();

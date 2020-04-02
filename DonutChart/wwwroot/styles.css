@@ -92,14 +92,14 @@
         font-size: 0.5em;
         line-height: 1;
         text-anchor: middle;
-        transform: translateY(-0.25em);
+        transform: translate(50%, 50%) translateY(-0.25em);
     }
     
     .donut-chart div svg g .donut-label {
         font-size: 0.2em;
         text-transform: uppercase;
         text-anchor: middle;
-        transform: translateY(0.3em);
+        transform: translate(50%, 50%) translateY(0.3em);
     }
 
     .donut-chart div .donut-key{
