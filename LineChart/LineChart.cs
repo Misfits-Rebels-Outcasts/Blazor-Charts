@@ -12,11 +12,33 @@ namespace WebAssemblyMan
     public class LineChart : ComponentBase
     {
         [Parameter]
-        public string InputData { get; set; }
-        
+        public string InputSeries1 { get; set; }
+        [Parameter]
+        public string InputSeries2 { get; set; }
+        [Parameter]
+        public string InputSeries3 { get; set; }
+        [Parameter]
+        public string InputSeries4 { get; set; }
+        [Parameter]
+        public string InputSeries5 { get; set; }
+        [Parameter]
+        public string InputSeries6 { get; set; }
+        [Parameter]
+        public string InputSeries7 { get; set; }
+        [Parameter]
+        public string InputSeries8 { get; set; }
+        [Parameter]
+        public string InputSeries9 { get; set; }
+        [Parameter]
+        public string InputSeries10 { get; set; }
+
         [Parameter]
         public string InputLabels { get; set; }
+        [Parameter]
+        public string XAxisLabels { get; set; }
 
+        //1. xaxis text labels dx dy
+        //2. expose gridyunits
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
             var seq = 0;
@@ -26,11 +48,56 @@ namespace WebAssemblyMan
             builder.AddAttribute(++seq, "class", "main");
 
 
-            System.Diagnostics.Debug.WriteLine("ID"+InputData);
+            //System.Diagnostics.Debug.WriteLine("ID"+InputData);
             
-            string[] inputDataArrX = InputData.Split(new char[] { '[', ']' }, StringSplitOptions.RemoveEmptyEntries);
+            //string[] inputDataArrX = InputData.Split(new char[] { '[', ']' }, StringSplitOptions.RemoveEmptyEntries);
             string[] inputLabelsArr = InputLabels.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] xAxisLabelsArr = XAxisLabels.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
+            int numLines = 0;
+            if (InputSeries1!=null) numLines++;
+            if (InputSeries2!=null) numLines++;
+            if (InputSeries3!=null) numLines++;
+            if (InputSeries4!=null) numLines++;
+            if (InputSeries5!=null) numLines++;
+            if (InputSeries6!=null) numLines++;
+            if (InputSeries7!=null) numLines++;
+            if (InputSeries8!=null) numLines++;
+            if (InputSeries9!=null) numLines++;
+            if (InputSeries10!=null) numLines++;
+
+            string[] inputDataArr=new string[numLines];
+            if (InputSeries1!=null) inputDataArr[0] = InputSeries1;
+            if (InputSeries2!=null) inputDataArr[1] = InputSeries2;
+            if (InputSeries3!=null) inputDataArr[2] = InputSeries3;
+            if (InputSeries4!=null) inputDataArr[3] = InputSeries4;
+            if (InputSeries5!=null) inputDataArr[4] = InputSeries5;
+            if (InputSeries6!=null) inputDataArr[5] = InputSeries6;
+            if (InputSeries7!=null) inputDataArr[6] = InputSeries7;
+            if (InputSeries8!=null) inputDataArr[7] = InputSeries8;
+            if (InputSeries9!=null) inputDataArr[8] = InputSeries9;
+            if (InputSeries10!=null) inputDataArr[9] = InputSeries10;
+
+            double maxY=0.0;
+            int numValues=0;
+            int numXLabels=xAxisLabelsArr.Length;
+            foreach (string iData in inputDataArr)
+            {
+                string[] inputLineArr = iData.Split(',');
+                double[] doubleAry=new double[inputLineArr.Length];
+                if (numValues<inputLineArr.Length)
+                    numValues=inputLineArr.Length;
+                for (int i = 0; i < inputLineArr.Length; i++)
+                {
+                    double data = 0;
+                    bool isDouble2=double.TryParse(inputLineArr[i],out data);
+                    doubleAry[i]=data;
+                    if (maxY<data)
+                        maxY=data;
+                }
+
+            }
+            /*
             int numLines = 0;
             System.Diagnostics.Debug.WriteLine("Start");
             foreach (string inputLine in inputDataArrX)
@@ -51,9 +118,10 @@ namespace WebAssemblyMan
                     System.Diagnostics.Debug.WriteLine("IL:" + inputLine);
                 }
             }
+            */
 
-            string[] colors = { "#ce4b99", "#27A844", "#377bbc" };
-            string[] labels = { "App Store", "Website", "Partners" };            
+            //string[] colors = { "#ce4b99", "#27A844", "#377bbc" };
+            //string[] labels = { "App Store", "Website", "Partners" };            
 
             double boundHeight = 150.0;
             double boundWidth = 150.0;
@@ -64,17 +132,24 @@ namespace WebAssemblyMan
             Rectangle rect = new Rectangle() { { "class", "background-rect" }};
             svg.AddItems(rect);
 
-
+            /*
             int numHorizontalLines = 10;
             int numVerticalLines = 10;
+            */
+
+            double gridYUnits = 10;
+            double gridXUnits = 10; //not required
+
+            //1. Determine number of input values in xaxis and use it for numVerticalLines
+            int numVerticalLines = numValues;
+            
+            //2. Detemine max value in yaxis and then use it calculate numHorizontalLines
+            int numHorizontalLines = ((int) (maxY / gridYUnits))+1;
+
             double verticalStartSpace = 25.0;
             double horizontalStartSpace = 25.0;
             double verticalEndSpace = 25.0;
             double horizontalEndSpace = 25.0;
-            double gridYUnits = 10;
-            double gridXUnits = 10;
-            //bool skipLastVerticalLine = true;
-            //bool skipLastHorizontalLine = true;
 
             double verticalSpace = (boundHeight- verticalStartSpace-verticalEndSpace) / (numHorizontalLines);
             double horizontalSpace = (boundWidth - horizontalStartSpace-horizontalEndSpace) / (numVerticalLines);
@@ -88,16 +163,19 @@ namespace WebAssemblyMan
             double startGridY = 0;
             for (int counter=0;counter<=numHorizontalLines;counter++)
             {
-                //if (counter == numHorizontalLines - 1 && skipLastHorizontalLine)
-                //    continue;
-
+                /*    
                 Path path = new Path() { { "class", "horizontal-grid-lines" }, { "d", "M "+horizontalStartSpace.ToString()+" "+(boundHeight - y).ToString() + " L "+(boundWidth-horizontalEndSpace).ToString()+" "+(boundHeight - y).ToString() } };
                 Text label = new Text() { { "class", "y-axis-labels" }, { "x", (horizontalStartSpace-2).ToString() }, { "y", (boundHeight - y).ToString() }, { "content", (startGridY).ToString() } };
-                svg.AddItems(path,label);
-                System.Diagnostics.Debug.WriteLine("Y:" + y);
+                */
+                Path path = new Path() { { "class", "horizontal-grid-lines" }, { "d", "M "+horizontalStartSpace.ToString()+" "+(boundHeight - y).ToString() + " L "+(boundWidth-horizontalEndSpace).ToString()+" "+(boundHeight - y).ToString() } };
+                Text label = new Text() { { "class", "y-axis-labels" }, { "x", (horizontalStartSpace-2).ToString() }, { "y", (boundHeight - y).ToString() }, { "content", (startGridY).ToString() } };
 
+                svg.AddItems(path,label);
+                //System.Diagnostics.Debug.WriteLine("Y:" + y);
                 y = y + verticalSpace;
                 startGridY = startGridY + gridYUnits;
+                //note : gridYUnits is the value the user see
+                //verticalSpace is the internal/actual value used to represent gridYUnits on the chart.
             }
 
             //Chart Line
@@ -113,9 +191,14 @@ namespace WebAssemblyMan
                 bool firstTime = true;
 
                 string[] inputLineArr = iData.Split(',');
-                int[] intAry=new int[inputLineArr.Length];
+                double[] intAry=new double[inputLineArr.Length];
                 for (int i = 0; i < inputLineArr.Length; i++)
-                    intAry[i] = int.Parse(inputLineArr[i]);
+                {
+                    double data = 0;
+                    bool isDouble2=double.TryParse(inputLineArr[i],out data);
+                    intAry[i]=data;
+                }
+
 
                 foreach (int i in intAry)
                 {
@@ -134,8 +217,10 @@ namespace WebAssemblyMan
                         chartLine = chartLine + " L ";
                         gridValueX = gridValueX + horizontalSpace;
                         gridValueY = verticalStartSpace;
+                        //if 5 verticalSapce represents 10 gridYUnits
+                        //when you have 10 it becomes 10*5/10=5
                         double gridValue = ((double)i) * verticalSpace / gridYUnits;
-                        gridValueY = boundHeight - (gridValueY + gridValue);
+                        gridValueY = boundHeight - (gridValueY + gridValue);                        
                         chartLine = chartLine + gridValueX.ToString() + " " + gridValueY.ToString();
                     }
                 }
@@ -150,13 +235,25 @@ namespace WebAssemblyMan
             //Vertical Lines            
             double x = horizontalStartSpace;
             double startGridX = 0;
+            int xLabelsCounter=0;
+
             for (int counter = 0; counter <= numVerticalLines; counter++)
             {
                 //if (counter == numVerticalLines - 1 && skipLastVerticalLine)
                 //    continue;
 
                 Path path = new Path() { { "class", "vertical-grid-lines" }, { "d", "M " + x.ToString() +" "+ (boundHeight-verticalStartSpace).ToString() + " L "+ x.ToString() + " " +(verticalEndSpace).ToString() } };
-                Text label = new Text() { { "class", "x-axis-labels" }, {"x",x.ToString() }, { "y", (boundHeight - verticalStartSpace + 5).ToString() }, { "content", (startGridX).ToString() } };
+                //Text label = new Text() { { "class", "x-axis-labels" }, {"x",x.ToString() }, { "y", (boundHeight - verticalStartSpace + 5).ToString() }, { "content", (startGridX).ToString() } };
+
+                string xLabels="";
+                if (xLabelsCounter<numXLabels)
+                    xLabels=xAxisLabelsArr[xLabelsCounter++];
+
+                //Text label = new Text() { { "class", "x-axis-labels" }, {"transform", "translate("+x.ToString()+","+(boundHeight - verticalStartSpace + 5).ToString()+") rotate(-40)" },{"dx","+1em"},{"dy","0.30em"}, { "content", xLabels } };
+                //Text label = new Text() { { "class", "x-axis-labels" }, {"transform", "translate("+x.ToString()+","+(boundHeight - verticalStartSpace + 5).ToString()+")" },{"dx","+1em"},{"dy","0.30em"}, { "content", xLabels } };
+                Text label = new Text() { { "class", "x-axis-labels" }, {"transform", "translate("+x.ToString()+","+(boundHeight - verticalStartSpace + 5).ToString()+")" },{"dx","+1em"},{"dy","0.30em"}, { "content", xLabels } };
+
+                //not required. just need number of grid lines
                 startGridX = startGridX + gridXUnits;
 
                 svg.AddItems(path,label);

@@ -43,7 +43,7 @@ namespace WebAssemblyMan
             foreach (string iData in inputDataArr)
             {
                 double data = 0;
-                bool isDouble2=double.TryParse(inputDataArr[i],out data);
+                bool isDouble2=double.TryParse(iData,out data);
                 inputDataArrDouble[i++] = data;               
                 if (max<data)
                     max=data;
@@ -55,7 +55,7 @@ namespace WebAssemblyMan
             int numHorizontalLines = i;
             
             //2. Detemine max bar value and then use it calculate numVerticalLines
-            int numVerticalLines = (int) (max / gridYUnits);
+            int numVerticalLines = (int) (max / gridXUnits);
 
             //int numHorizontalLines = 10;
             //int numVerticalLines = 10;

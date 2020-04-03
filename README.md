@@ -40,11 +40,16 @@ https://www.webassemblyman.com/blazor/blazorbarchart.html
 
 To use the Line Chart
 
-&lt;LineChart InputData="[30,70,42,50,3,55,35,22 ],[40,50,32,70,55,15,15,12],[0,10,10,10,10,20,70,70]"
-InputLabels="App Store,Website,Partners"&gt;&lt;/LineChart&gt;
+&lt;LineChart InputSeries1="30,70,42,50,3,55,35,22"
+            InputSeries2="40,50,32,75,55,15,15,12,66"
+            InputSeries3="0,10,10,10,10,20,70,70"
+            XAxisLabels="Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep"
+            InputLabels="App Store,Website,Partners"&gt;
+&lt;/LineChart&gt;
+
 
 ![Blazor Charts](https://barcoderesource.com/blazor/blazorcharts.png)
 
 ![Blazor Charts](https://barcoderesource.com/blazor/blazorbarcharts.png)
 
-Please also check out our Elegantly Simple [Misfits-Rebels-Outcasts/Blazor-Dashboard](https://github.com/Misfits-Rebels-Outcasts/Blazor-Dashboard) that goes hand-in-hand with our Blazor Charts.
+Please also check out our Elegantly Simple [Misfits-Rebels-Outcasts/Blazor-Dashboard](https://github.com/Misfits-Rebels-Outcasts/Blazor-Dashboard) and [Misfits-Rebels-Outcasts/Blazor-Sparkline](https://github.com/Misfits-Rebels-Outcasts/Blazor-Sparkline) that goes hand-in-hand with our Blazor Charts.
