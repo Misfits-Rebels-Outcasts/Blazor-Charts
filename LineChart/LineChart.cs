@@ -47,10 +47,6 @@ namespace WebAssemblyMan
             builder.OpenElement(++seq, "div");
             builder.AddAttribute(++seq, "class", "main");
 
-
-            //System.Diagnostics.Debug.WriteLine("ID"+InputData);
-            
-            //string[] inputDataArrX = InputData.Split(new char[] { '[', ']' }, StringSplitOptions.RemoveEmptyEntries);
             string[] inputLabelsArr = InputLabels.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             string[] xAxisLabelsArr = XAxisLabels.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -97,38 +93,11 @@ namespace WebAssemblyMan
                 }
 
             }
-            /*
-            int numLines = 0;
-            System.Diagnostics.Debug.WriteLine("Start");
-            foreach (string inputLine in inputDataArrX)
-            {
-                if (inputLine.IndexOfAny(new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' }) >= 0)
-                {
-                    numLines++;
-                }
-            }
-            System.Diagnostics.Debug.WriteLine("End");
-            string[] inputDataArr = new string[numLines];
-            int lineCounter = 0;
-            foreach (string inputLine in inputDataArrX)
-            {
-                if (inputLine.IndexOfAny(new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' }) >= 0)
-                {
-                    inputDataArr[lineCounter++] = inputLine;
-                    System.Diagnostics.Debug.WriteLine("IL:" + inputLine);
-                }
-            }
-            */
-
-            //string[] colors = { "#ce4b99", "#27A844", "#377bbc" };
-            //string[] labels = { "App Store", "Website", "Partners" };            
 
             double boundHeight = 150.0;
             double boundWidth = 150.0;
 
             SVG svg = new SVG() { { "width", "100%" }, { "height", "100%" }, { "viewBox", "0 0 150 150" } };
-            //Rectangle rect = new Rectangle() { { "class", "background-rect" }, { "width", "100%" }, { "height", "100%" }, { "fill", "white" }, { "stroke", "gray" }, {"stroke-width", "0.5" } };
-            //Rectangle rect = new Rectangle() { { "width", "100%" }, { "height", "100%" }, { "fill", "cyan" }};
             Rectangle rect = new Rectangle() { { "class", "background-rect" }};
             svg.AddItems(rect);
 
@@ -163,10 +132,6 @@ namespace WebAssemblyMan
             double startGridY = 0;
             for (int counter=0;counter<=numHorizontalLines;counter++)
             {
-                /*    
-                Path path = new Path() { { "class", "horizontal-grid-lines" }, { "d", "M "+horizontalStartSpace.ToString()+" "+(boundHeight - y).ToString() + " L "+(boundWidth-horizontalEndSpace).ToString()+" "+(boundHeight - y).ToString() } };
-                Text label = new Text() { { "class", "y-axis-labels" }, { "x", (horizontalStartSpace-2).ToString() }, { "y", (boundHeight - y).ToString() }, { "content", (startGridY).ToString() } };
-                */
                 Path path = new Path() { { "class", "horizontal-grid-lines" }, { "d", "M "+horizontalStartSpace.ToString()+" "+(boundHeight - y).ToString() + " L "+(boundWidth-horizontalEndSpace).ToString()+" "+(boundHeight - y).ToString() } };
                 Text label = new Text() { { "class", "y-axis-labels" }, { "x", (horizontalStartSpace-2).ToString() }, { "y", (boundHeight - y).ToString() }, { "content", (startGridY).ToString() } };
 
@@ -224,8 +189,6 @@ namespace WebAssemblyMan
                         chartLine = chartLine + gridValueX.ToString() + " " + gridValueY.ToString();
                     }
                 }
-                //System.Diagnostics.Debug.WriteLine("CL:" + chartLine);
-               // Path linepath = new Path() { { "fill", "none" }, { "stroke", colors[colorcounter++] }, { "stroke-width", "1.0" }, { "d", chartLine } };
                 Path linepath = new Path() { { "class", "line-"+(colorcounter+1).ToString() },{ "d", chartLine } };
                 colorcounter++;
                 svg.AddItems(linepath);
@@ -239,18 +202,13 @@ namespace WebAssemblyMan
 
             for (int counter = 0; counter <= numVerticalLines; counter++)
             {
-                //if (counter == numVerticalLines - 1 && skipLastVerticalLine)
-                //    continue;
 
                 Path path = new Path() { { "class", "vertical-grid-lines" }, { "d", "M " + x.ToString() +" "+ (boundHeight-verticalStartSpace).ToString() + " L "+ x.ToString() + " " +(verticalEndSpace).ToString() } };
-                //Text label = new Text() { { "class", "x-axis-labels" }, {"x",x.ToString() }, { "y", (boundHeight - verticalStartSpace + 5).ToString() }, { "content", (startGridX).ToString() } };
 
                 string xLabels="";
                 if (xLabelsCounter<numXLabels)
                     xLabels=xAxisLabelsArr[xLabelsCounter++];
 
-                //Text label = new Text() { { "class", "x-axis-labels" }, {"transform", "translate("+x.ToString()+","+(boundHeight - verticalStartSpace + 5).ToString()+") rotate(-40)" },{"dx","+1em"},{"dy","0.30em"}, { "content", xLabels } };
-                //Text label = new Text() { { "class", "x-axis-labels" }, {"transform", "translate("+x.ToString()+","+(boundHeight - verticalStartSpace + 5).ToString()+")" },{"dx","+1em"},{"dy","0.30em"}, { "content", xLabels } };
                 Text label = new Text() { { "class", "x-axis-labels" }, {"transform", "translate("+x.ToString()+","+(boundHeight - verticalStartSpace + 5).ToString()+")" },{"dx","+1em"},{"dy","0.30em"}, { "content", xLabels } };
 
                 //not required. just need number of grid lines
@@ -267,17 +225,13 @@ namespace WebAssemblyMan
             builder.AddAttribute(++seq, "class", "key");
             builder.OpenElement(++seq, "ul");
             builder.AddAttribute(++seq, "class", "key-list");
-            //builder.AddAttribute(++seq, "aria-hidden", "true");
-            //builder.AddAttribute(++seq, "style", "list-style-type: none;");
 
             colorcounter = 0;
             foreach (string iData in inputDataArr)
             {
-                //int data = int.Parse(dataStr);
                 builder.OpenElement(++seq, "li");
                 builder.OpenElement(++seq, "span");
                 builder.AddAttribute(++seq, "class", "legend-"+(colorcounter+1).ToString());
-                //builder.AddAttribute(++seq, "style", "background-color:" + colors[colorcounter]);
 
                 builder.CloseElement();
 

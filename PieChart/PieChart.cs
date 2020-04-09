@@ -30,7 +30,6 @@ namespace WebAssemblyMan
 
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
-            //string[] colors = { "#ce4b99", "#27A844", "#377bbc","#fe2712", "#fc600a", "#fb9902","#fccc1a", "#fefe33", "#b2d732", "#66b032", "#347c98", "#0247fe", "#4424d6","#8601af","#c21460" };
             string[] inputDataArr = InputData.Split(',');
             string[] inputLabelsArr = InputLabels.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -52,7 +51,6 @@ namespace WebAssemblyMan
                 bool isDouble2=double.TryParse(inputDataArr[icounter],out data);
                 double percent = data/100;
 
-                //double percent = double.Parse(inputDataArr[icounter])/100;
                 totalPercent = totalPercent + percent;
                 getCoordinatesForPercent(totalPercent, out x, out y);
                 Path path = null;

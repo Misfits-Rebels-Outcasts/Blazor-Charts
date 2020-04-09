@@ -23,8 +23,6 @@ namespace WebAssemblyMan
             builder.AddAttribute(++seq, "class", "vertical-bar-chart");
             builder.OpenElement(++seq, "div");
 
-            //System.Diagnostics.Debug.WriteLine("ID"+InputData);
-
             string[] inputDataArr = InputData.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             string[] inputLabelsArr = InputLabels.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -41,7 +39,6 @@ namespace WebAssemblyMan
             double max=0.0;
             foreach (string iData in inputDataArr)
             {
-                //dAry[i] = double.Parse(inputDataArr[i++]);
                 double data = 0;
                 bool isDouble2=double.TryParse(iData,out data);
                 dAry[i++] = data;
@@ -79,12 +76,10 @@ namespace WebAssemblyMan
                 Path path = new Path() { { "class", "horizontal-grid-lines"}, { "d", "M " + horizontalStartSpace.ToString() + " " + (boundHeight - y).ToString() + " L " + (boundWidth - horizontalEndSpace).ToString() + " " + (boundHeight - y).ToString() } };
                 Text label = new Text() { { "class", "y-axis-labels" }, { "x", (horizontalStartSpace - 2).ToString() }, { "y", (boundHeight - y).ToString() }, { "content", (startGridY).ToString() } };
                 svg.AddItems(path, label);
-                //System.Diagnostics.Debug.WriteLine("Y:" + y);
 
                 y = y + verticalSpace;
                 startGridY = startGridY + gridYUnits;
             }
-            //System.Diagnostics.Debug.WriteLine("Vertical Lines");
 
             //Vertical Lines            
             double x = horizontalStartSpace;
@@ -100,16 +95,12 @@ namespace WebAssemblyMan
                 startGridX = startGridX + gridXUnits;
                 if (i < (inputDataArr.Length))
                     {
-                        //Rectangle rectangle = new Rectangle() {{ "class", "bar" },  { "x", (x).ToString() }, { "y", (boundHeight-verticalStartSpace- dAry[i]).ToString() }, { "height", dAry[i].ToString() + "px" } };
                         Rectangle rectangle = new Rectangle() {{ "class", "bar" },  { "x", (x).ToString() }, { "y", (boundHeight-verticalStartSpace- (dAry[i]/max)*numHorizontalLines*verticalSpace).ToString() }, { "height", (dAry[i]/max)*numHorizontalLines*verticalSpace + "px" } };
-                        //svg.AddItems(label, rectangle,path);
                         svg.AddItems(label, rectangle);
                         i++;
                     }
                     else
                     {
-                        //System.Diagnostics.Debug.WriteLine("label");
-                        //svg.AddItems(label,path);
                         svg.AddItems(label);
                     }
 

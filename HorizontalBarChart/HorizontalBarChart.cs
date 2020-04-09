@@ -26,8 +26,6 @@ namespace WebAssemblyMan
             builder.AddAttribute(++seq, "class", "horizontal-bar-chart");
             builder.OpenElement(++seq, "div");
 
-            //System.Diagnostics.Debug.WriteLine("ID"+InputData);
-
             string[] inputDataArr = InputData.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             string[] inputLabelsArr = InputLabels.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             double boundHeight = 150.0;
@@ -99,40 +97,30 @@ namespace WebAssemblyMan
             i = 0;
             for (int counter=0;counter<= numHorizontalLines; counter++)
             {
-                //System.Diagnostics.Debug.WriteLine("i:" + i);
                 if (counter == numHorizontalLines  && skipLastHorizontalLine)
                 {
                     continue;
                 }
-                //System.Diagnostics.Debug.WriteLine("y:" + i+":"+ inputDataArr.Length);
 
-                //Path path = new Path() { { "class", "horizontal-grid-lines"}, { "d", "M "+(horizontalStartSpace).ToString()+" "+(boundHeight - y).ToString() + " L "+(horizontalStartSpace+numHorizontalLines*horizontalSpace).ToString()+" "+(boundHeight - y).ToString() } };                
                 Path path = new Path() { { "class", "horizontal-grid-lines"}, { "d", "M "+(horizontalStartSpace).ToString()+" "+(boundHeight - y).ToString() + " L "+(horizontalStartSpace+numVerticalLines*horizontalSpace).ToString()+" "+(boundHeight - y).ToString() } };                
                 string xLabels="";
                 if (counter<inputLabelsArr.Length)
                     xLabels=inputLabelsArr[counter];
                 Text label = new Text() { { "class", "y-axis-labels" }, { "x", (horizontalStartSpace-2).ToString() }, { "y", (boundHeight - y).ToString() }, { "content", xLabels } };
                 
-                //System.Diagnostics.Debug.WriteLine("z:" + i);
                 if (counter==0)
                     svg.AddItems(path,label);
                 if (i< (inputDataArr.Length))
                 {
-                    //System.Diagnostics.Debug.WriteLine("i:" + i + ":" + inputDataArrDouble[i].ToString() + "px");
-                    //System.Diagnostics.Debug.WriteLine("labelrect");
-                    //Rectangle bar = new Rectangle() { { "class", "bar" }, { "x", (horizontalStartSpace).ToString() }, { "y", (boundHeight - y - 5).ToString() }, { "width", inputDataArrDouble[i].ToString() + "px" }, { "height", "5px" } };
                     Rectangle bar = new Rectangle() { { "class", "bar" }, { "x", (horizontalStartSpace).ToString() }, { "y", (boundHeight - y - 5).ToString() }, { "width", (inputDataArrDouble[i]/max)*numVerticalLines*horizontalSpace + "px" }, { "height", "5px" } };
                     svg.AddItems(label, bar);
                     i++;
                 }
                 else
                 {
-                    //System.Diagnostics.Debug.WriteLine("label");
                     if (counter<numHorizontalLines)
                         svg.AddItems(label);
                 }
-
-                //System.Diagnostics.Debug.WriteLine("Y:" + y);
 
                 y = y + verticalSpace;
                 startGridY = startGridY + gridYUnits;
